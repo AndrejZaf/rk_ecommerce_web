@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,13 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
     FooterComponent,
     ContentLayoutComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, CoreModule, NgbModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    CoreModule,
+    NgbModule,
+    SharedModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
