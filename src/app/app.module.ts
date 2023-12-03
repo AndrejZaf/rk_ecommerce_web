@@ -9,6 +9,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
 import { SharedModule } from './shared/shared.module';
+import { SneakersModule } from './modules/sneakers/sneakers.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     NgbModule,
     SharedModule,
+    SneakersModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
