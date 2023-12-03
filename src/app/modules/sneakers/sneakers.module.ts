@@ -9,6 +9,7 @@ import { GenderFilterComponent } from './components/gender-filter/gender-filter.
 import { BrandFilterComponent } from './components/brand-filter/brand-filter.component';
 import { SizeFilterComponent } from './components/size-filter/size-filter.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { SelectedSneakerComponent } from './containers/selected-sneaker/selected-sneaker.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     GenderFilterComponent,
     BrandFilterComponent,
     SizeFilterComponent,
+    SelectedSneakerComponent,
   ],
   imports: [CommonModule, SneakersRoutingModule, SharedModule],
 })
