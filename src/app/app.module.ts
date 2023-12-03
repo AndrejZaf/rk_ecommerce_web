@@ -10,6 +10,8 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
 import { SharedModule } from './shared/shared.module';
 import { SneakersModule } from './modules/sneakers/sneakers.module';
+import { NgxsModule } from '@ngxs/store';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,10 @@ import { SneakersModule } from './modules/sneakers/sneakers.module';
     AppRoutingModule,
     CoreModule,
     NgbModule,
+    HttpClientModule,
     SharedModule,
     SneakersModule,
+    NgxsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],
