@@ -6,10 +6,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { SneakersViewModel } from '../../models/sneakers.view-model';
 import { SneakerService } from '../../services/sneaker.service';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
+import { append, patch } from '@ngxs/store/operators';
 
 export const sneakersState = (): SneakersViewModel => ({
   selectedSneaker: undefined,
   sneakers: [],
+  page: 0,
+  size: 12,
+  hasMorePages: true,
 });
 
 @State<SneakersViewModel>({
@@ -26,6 +30,11 @@ export class SneakerState {
   @Selector()
   static selectedSneaker(state: SneakersViewModel): SneakerDTO | undefined {
     return state.selectedSneaker;
+  }
+
+  @Selector()
+  static hasMorePages(state: SneakersViewModel): boolean {
+    return state.hasMorePages;
   }
 
   constructor(private sneakerService: SneakerService) {}
@@ -54,12 +63,11 @@ export class SneakerState {
   }
 
   @Action(sneakersActions.LoadSneakers)
-  loadSneakers({
-    dispatch,
-  }: StateContext<SneakersViewModel>): Observable<
-    void | SneakerDTO[] | Observable<void>
-  > {
-    return from(this.sneakerService.loadSneakers()).pipe(
+  loadSneakers(
+    { dispatch }: StateContext<SneakersViewModel>,
+    { page, size }: sneakersActions.LoadSneakers
+  ): Observable<void | SneakerDTO[] | Observable<void>> {
+    return from(this.sneakerService.loadSneakers(page, size)).pipe(
       map((data: SneakerDTO[]) =>
         dispatch(new sneakersActions.LoadSneakersSuccess(data))
       ),
@@ -75,5 +83,43 @@ export class SneakerState {
     { payload }: sneakersActions.LoadSneakersSuccess
   ): void {
     patchState({ sneakers: payload });
+  }
+
+  @Action(sneakersActions.LoadSneakersPage)
+  loadSneakersPage({
+    dispatch,
+    setState,
+    getState,
+  }: StateContext<SneakersViewModel>): Observable<
+    void | SneakerDTO[] | Observable<void>
+  > {
+    return from(
+      this.sneakerService.loadSneakers(getState().page, getState().size)
+    ).pipe(
+      map((data: SneakerDTO[]) => {
+        dispatch(new sneakersActions.LoadSneakersPageSuccess(data));
+        setState(
+          patch({
+            page: (page) => page + 1,
+          })
+        );
+      }),
+      catchError((err: HttpErrorResponse) =>
+        dispatch(new sneakersActions.LoadSneakersPageFail(err))
+      )
+    );
+  }
+
+  @Action(sneakersActions.LoadSneakersPageSuccess)
+  loadSneakersPageSuccess(
+    { setState }: StateContext<SneakersViewModel>,
+    { payload }: sneakersActions.LoadSneakersPageSuccess
+  ): void {
+    setState(
+      patch({
+        sneakers: append(payload),
+        hasMorePages: payload.length !== 0,
+      })
+    );
   }
 }

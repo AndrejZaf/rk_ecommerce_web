@@ -12,6 +12,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { SelectedSneakerComponent } from './containers/selected-sneaker/selected-sneaker.component';
 import { SneakerState } from './store/store/sneaker.store';
 import { NgxsModule } from '@ngxs/store';
+import { SelectedSneakerSizeComponent } from './components/selected-sneaker-size/selected-sneaker-size.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { NgxsModule } from '@ngxs/store';
     BrandFilterComponent,
     SizeFilterComponent,
     SelectedSneakerComponent,
+    SelectedSneakerSizeComponent,
   ],
   imports: [
     CommonModule,
     SneakersRoutingModule,
     SharedModule,
+    InfiniteScrollModule,
     NgxsModule.forFeature([SneakerState]),
   ],
 })

@@ -18,6 +18,7 @@ export class LoadSneakerFail {
 
 export class LoadSneakers {
   static readonly type = '[Sneakers] Load Sneakers';
+  constructor(readonly page: number, readonly size: number) {}
 }
 
 export class LoadSneakersSuccess {
@@ -28,4 +29,22 @@ export class LoadSneakersSuccess {
 export class LoadSneakersFail {
   static readonly type = '[Sneakers] Load Sneakers Fail';
   constructor(readonly payload: HttpErrorResponse) {}
+}
+
+export class LoadSneakersPage {
+  static readonly type = '[Sneakers] Load Sneakers Page';
+}
+
+export class LoadSneakersPageSuccess {
+  static readonly type = '[Sneakers] Load Sneakers Page Success';
+  constructor(readonly payload: SneakerDTO[]) {}
+}
+
+export class LoadSneakersPageFail {
+  static readonly type = '[Sneakers] Load Sneakers Page Fail';
+  constructor(readonly payload: HttpErrorResponse) {}
+}
+
+export class IncrementSneakersPage {
+  static readonly type = '[Sneakers] Increment Page';
 }

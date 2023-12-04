@@ -8,7 +8,9 @@
     <p>
       {{ (selectedSneaker$ | async)?.description }}
     </p>
-    <app-size-filter></app-size-filter>
+    <app-selected-sneaker-size
+      [sneakerSizes]="(selectedSneaker$ | async)?.sizes"
+    ></app-selected-sneaker-size>
   </div>
   <img [src]="(selectedSneaker$ | async)?.images?.[1]" />
 </div>
