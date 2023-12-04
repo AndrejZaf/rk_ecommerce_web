@@ -1,31 +1,32 @@
 <div class="container mt-5">
   <div class="premium-sneaker-preview text-center">
     <h2 class="fw-bold">Our Top Pick</h2>
-    <h1 class="fw-bolder">{{ (premiumSneaker | async)?.name }}</h1>
-    <img [src]="(premiumSneaker | async)!.images[0]" />
+    <h1 class="fw-bolder">{{ (premiumSneaker$ | async)?.name }}</h1>
+    <img [src]="(premiumSneaker$ | async)?.images?.[0]" />
   </div>
   <div
     class="premium-sneaker-details d-flex justify-content-between align-items-center"
   >
     <div class="premium-sneaker-text">
-      <h3 class="fw-bold">{{ (premiumSneaker | async)?.name }}</h3>
+      <h3 class="fw-bold">{{ (premiumSneaker$ | async)?.name }}</h3>
       <p>
-        {{ (premiumSneaker | async)?.description }}
+        {{ (premiumSneaker$ | async)?.description }}
       </p>
       <button class="btn btn-outline-charcoal-alt btn-lg">
-        Buy {{ (premiumSneaker | async)?.name }}
+        Buy {{ (premiumSneaker$ | async)?.name }}
       </button>
     </div>
     <img
       class="premium-sneaker-detail-image"
-      [src]="(premiumSneaker | async)!.images[1]"
+      [src]="(premiumSneaker$ | async)?.images?.[1]"
     />
   </div>
   <div class="top-shoes mt-5 border-top">
     <h2 class="text-center my-5">Most Wanted Sneakers</h2>
     <div class="d-flex flex-wrap gap-5 justify-content-center">
       <app-sneaker-card
-        *ngFor="let sneaker of sneakers | async"
+        *ngFor="let sneaker of sneakers$ | async"
+        (click)="redirectToSneaker(sneaker.id)"
         [sneakerName]="sneaker.name"
         [sneakerPrice]="sneaker.price"
         [sneakerUrl]="sneaker.images[1]"

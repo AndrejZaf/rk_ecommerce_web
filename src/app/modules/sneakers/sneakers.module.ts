@@ -10,6 +10,8 @@ import { BrandFilterComponent } from './components/brand-filter/brand-filter.com
 import { SizeFilterComponent } from './components/size-filter/size-filter.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SelectedSneakerComponent } from './containers/selected-sneaker/selected-sneaker.component';
+import { SneakerState } from './store/store/sneaker.store';
+import { NgxsModule } from '@ngxs/store';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,11 @@ import { SelectedSneakerComponent } from './containers/selected-sneaker/selected
     SizeFilterComponent,
     SelectedSneakerComponent,
   ],
-  imports: [CommonModule, SneakersRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    SneakersRoutingModule,
+    SharedModule,
+    NgxsModule.forFeature([SneakerState]),
+  ],
 })
 export class SneakersModule {}
