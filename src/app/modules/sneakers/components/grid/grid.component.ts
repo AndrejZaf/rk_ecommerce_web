@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
-import * as sneakersActions from '../../store/store/sneaker.actions';
+import * as sneakersActions from '../../store/sneaker.actions';
 import { Store } from '@ngxs/store';
-import { SneakerState } from '../../store/store/sneaker.store';
+import { SneakerState } from '../../store/sneaker.store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 

@@ -23,9 +23,20 @@ export class SneakerService implements ISneakerService {
     return this.http.get<SneakerDTO>(`http://localhost:8080/api/sneaker/${id}`);
   }
 
-  loadSneakers(page: number, size: number): Observable<SneakerDTO[]> {
+  loadSneakers(
+    page: number,
+    size: number,
+    brandIds?: number[]
+  ): Observable<SneakerDTO[]> {
+    let brandQuery = '';
+    console.log;
+    if (brandIds?.length !== 0) {
+      brandQuery = `&brandIds=${brandIds?.join()}`;
+    }
+
+    console.log(brandQuery);
     return this.http.get<SneakerDTO[]>(
-      `http://localhost:8080/api/sneaker?page=${page}&size=${size}`
+      `http://localhost:8080/api/sneaker?page=${page}&size=${size}${brandQuery}`
     );
   }
 }

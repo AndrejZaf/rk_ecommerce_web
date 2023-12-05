@@ -10,4 +10,5 @@ export interface SneakersViewModel {
   brands: BrandDTO[];
   sizes: number[];
   genders: string[];
+  selectedBrandIds: number[];
 }

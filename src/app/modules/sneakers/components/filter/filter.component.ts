@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { BrandDTO } from '../../dtos/brand.dto';
 import { Store } from '@ngxs/store';
-import { SneakerState } from '../../store/store/sneaker.store';
+import { SneakerState } from '../../store/sneaker.store';
 import { Observable } from 'rxjs';
 
 @Component({

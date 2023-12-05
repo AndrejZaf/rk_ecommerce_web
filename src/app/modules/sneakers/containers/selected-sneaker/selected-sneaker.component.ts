@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
-import * as sneakersActions from '../../store/store/sneaker.actions';
-import { SneakerState } from '../../store/store/sneaker.store';
+import * as sneakersActions from '../../store/sneaker.actions';
+import { SneakerState } from '../../store/sneaker.store';
 
 @Component({
   selector: 'app-selected-sneaker',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import * as sneakersActions from '../../store/store/sneaker.actions';
+import * as sneakersActions from '../../store/sneaker.actions';
 import { Observable } from 'rxjs';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
-import { SneakerState } from '../../store/store/sneaker.store';
+import { SneakerState } from '../../store/sneaker.store';
 import { BrandDTO } from '../../dtos/brand.dto';
 @Component({
   selector: 'app-sneakers',

@@ -3,13 +3,13 @@ import { State, Selector, Action, StateContext } from '@ngxs/store';
 import * as sneakersActions from './sneaker.actions';
 import { Observable, catchError, from, map } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { SneakersViewModel } from '../../models/sneakers.view-model';
-import { SneakerService } from '../../services/sneaker.service';
-import { SneakerDTO } from '../../dtos/sneaker.dto';
+import { SneakersViewModel } from '../models/sneakers.view-model';
+import { SneakerService } from '../services/sneaker.service';
+import { SneakerDTO } from '../dtos/sneaker.dto';
 import { append, patch } from '@ngxs/store/operators';
-import { BrandDTO } from '../../dtos/brand.dto';
-import { BrandService } from './../../services/brand.service';
-import { SneakerSizeService } from '../../services/sneaker-size.service';
+import { BrandDTO } from '../dtos/brand.dto';
+import { BrandService } from '../services/brand.service';
+import { SneakerSizeService } from '../services/sneaker-size.service';
 
 export const sneakersState = (): SneakersViewModel => ({
   selectedSneaker: undefined,
@@ -20,6 +20,7 @@ export const sneakersState = (): SneakersViewModel => ({
   brands: [],
   sizes: [],
   genders: [],
+  selectedBrandIds: [],
 });
 
 @State<SneakersViewModel>({
@@ -114,7 +115,11 @@ export class SneakerState {
     void | SneakerDTO[] | Observable<void>
   > {
     return from(
-      this.sneakerService.loadSneakers(getState().page, getState().size)
+      this.sneakerService.loadSneakers(
+        getState().page,
+        getState().size,
+        getState().selectedBrandIds
+      )
     ).pipe(
       map((data: SneakerDTO[]) => {
         dispatch(new sneakersActions.LoadSneakersPageSuccess(data));
@@ -189,5 +194,14 @@ export class SneakerState {
     { payload }: sneakersActions.LoadSizesSuccess
   ): void {
     patchState({ sizes: payload });
+  }
+
+  @Action(sneakersActions.SelectBrandsIds)
+  selectBrandIds(
+    { patchState, dispatch }: StateContext<SneakersViewModel>,
+    { payload }: sneakersActions.SelectBrandsIds
+  ): void {
+    patchState({ selectedBrandIds: payload, page: 0, sneakers: [] });
+    dispatch(new sneakersActions.LoadSneakersPage());
   }
 }

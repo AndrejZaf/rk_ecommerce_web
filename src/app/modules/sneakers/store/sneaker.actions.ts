@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { SneakerDTO } from '../../dtos/sneaker.dto';
-import { BrandDTO } from '../../dtos/brand.dto';
+import { SneakerDTO } from '../dtos/sneaker.dto';
+import { BrandDTO } from '../dtos/brand.dto';
 
 export class LoadSneaker {
   static readonly type = '[Sneakers] Load Selected Sneaker';
@@ -76,4 +76,9 @@ export class LoadSizesSuccess {
 export class LoadSizesFail {
   static readonly type = '[Sneakers] Load Sizes Fail';
   constructor(readonly payload: HttpErrorResponse) {}
+}
+
+export class SelectBrandsIds {
+  static readonly type = '[Sneakers] Select Brand Ids';
+  constructor(readonly payload: number[]) {}
 }

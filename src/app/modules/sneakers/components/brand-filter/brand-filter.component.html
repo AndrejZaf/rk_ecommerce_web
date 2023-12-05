@@ -1,14 +1,20 @@
 <h6 class="fw-bold text-uppercase border-bottom pb-2">Brands</h6>
-<div class="d-flex flex-column">
-  <div *ngFor="let brand of brands" class="form-check">
-    <input
-      class="form-check-input"
-      type="checkbox"
-      value="{{ brand.id }}"
-      id="{{ brand.name }}"
-    />
-    <label class="form-check-label user-select-none" for="{{ brand.name }}">
-      {{ brand.name }}
-    </label>
-  </div>
+<div class="d-flex flex-column" *ngIf="brands">
+  <form [formGroup]="form">
+    <div
+      *ngFor="let brand of brandCheckboxes.controls; let i = index"
+      formArrayName="brands"
+      class="form-check"
+    >
+      <input
+        class="form-check-input"
+        type="checkbox"
+        [formControlName]="i"
+        id="{{ i }}"
+      />
+      <label class="form-check-label user-select-none" for="{{ i }}">
+        {{ brands[i].name }}
+      </label>
+    </div>
+  </form>
 </div>
