@@ -1,4 +1,8 @@
 <div class="d-flex gap-5 mt-5">
   <app-filter></app-filter>
-  <app-grid [sneakers]="sneakers$ | async"></app-grid>
+  <app-grid
+    [sneakers]="sneakers$ | async"
+    [hasMorePages]="hasMorePages$ | async"
+    (onScroll)="onScroll()"
+  ></app-grid>
 </div>

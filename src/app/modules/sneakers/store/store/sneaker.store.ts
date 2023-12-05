@@ -7,6 +7,9 @@ import { SneakersViewModel } from '../../models/sneakers.view-model';
 import { SneakerService } from '../../services/sneaker.service';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
 import { append, patch } from '@ngxs/store/operators';
+import { BrandDTO } from '../../dtos/brand.dto';
+import { BrandService } from './../../services/brand.service';
+import { SneakerSizeService } from '../../services/sneaker-size.service';
 
 export const sneakersState = (): SneakersViewModel => ({
   selectedSneaker: undefined,
@@ -14,6 +17,9 @@ export const sneakersState = (): SneakersViewModel => ({
   page: 0,
   size: 12,
   hasMorePages: true,
+  brands: [],
+  sizes: [],
+  genders: [],
 });
 
 @State<SneakersViewModel>({
@@ -37,7 +43,21 @@ export class SneakerState {
     return state.hasMorePages;
   }
 
-  constructor(private sneakerService: SneakerService) {}
+  @Selector()
+  static brands(state: SneakersViewModel): BrandDTO[] {
+    return state.brands;
+  }
+
+  @Selector()
+  static sizes(state: SneakersViewModel): number[] {
+    return state.sizes;
+  }
+
+  constructor(
+    private sneakerService: SneakerService,
+    private brandService: BrandService,
+    private sneakerSizeService: SneakerSizeService
+  ) {}
 
   @Action(sneakersActions.LoadSneaker)
   loadSneaker(
@@ -121,5 +141,53 @@ export class SneakerState {
         hasMorePages: payload.length !== 0,
       })
     );
+  }
+
+  @Action(sneakersActions.LoadBrands)
+  loadBrands({
+    dispatch,
+  }: StateContext<SneakersViewModel>): Observable<
+    void | BrandDTO[] | Observable<void>
+  > {
+    return from(this.brandService.loadBrands()).pipe(
+      map((data: BrandDTO[]) =>
+        dispatch(new sneakersActions.LoadBrandsSuccess(data))
+      ),
+      catchError((err: HttpErrorResponse) =>
+        dispatch(new sneakersActions.LoadBrandsFail(err))
+      )
+    );
+  }
+
+  @Action(sneakersActions.LoadBrandsSuccess)
+  loadBrandsSuccess(
+    { patchState }: StateContext<SneakersViewModel>,
+    { payload }: sneakersActions.LoadBrandsSuccess
+  ): void {
+    patchState({ brands: payload });
+  }
+
+  @Action(sneakersActions.LoadSizes)
+  loadSizes({
+    dispatch,
+  }: StateContext<SneakersViewModel>): Observable<
+    void | number[] | Observable<void>
+  > {
+    return from(this.sneakerSizeService.loadSneakerSizes()).pipe(
+      map((data: number[]) =>
+        dispatch(new sneakersActions.LoadSizesSuccess(data))
+      ),
+      catchError((err: HttpErrorResponse) =>
+        dispatch(new sneakersActions.LoadSizesFail(err))
+      )
+    );
+  }
+
+  @Action(sneakersActions.LoadSizesSuccess)
+  loadSizesSuccess(
+    { patchState }: StateContext<SneakersViewModel>,
+    { payload }: sneakersActions.LoadSizesSuccess
+  ): void {
+    patchState({ sizes: payload });
   }
 }

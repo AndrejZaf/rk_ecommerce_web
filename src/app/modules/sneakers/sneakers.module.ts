@@ -14,6 +14,7 @@ import { SneakerState } from './store/store/sneaker.store';
 import { NgxsModule } from '@ngxs/store';
 import { SelectedSneakerSizeComponent } from './components/selected-sneaker-size/selected-sneaker-size.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     SneakersRoutingModule,
     SharedModule,
     InfiniteScrollModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgxsModule.forFeature([SneakerState]),
   ],
 })

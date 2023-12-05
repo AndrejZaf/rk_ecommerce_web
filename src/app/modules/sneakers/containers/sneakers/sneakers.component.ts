@@ -4,8 +4,7 @@ import * as sneakersActions from '../../store/store/sneaker.actions';
 import { Observable } from 'rxjs';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
 import { SneakerState } from '../../store/store/sneaker.store';
-import { LoadSneakersPage } from './../../store/store/sneaker.actions';
-
+import { BrandDTO } from '../../dtos/brand.dto';
 @Component({
   selector: 'app-sneakers',
   templateUrl: './sneakers.component.html',
@@ -13,12 +12,20 @@ import { LoadSneakersPage } from './../../store/store/sneaker.actions';
 })
 export class SneakersComponent implements OnInit {
   public sneakers$: Observable<SneakerDTO[]>;
+  public hasMorePages$: Observable<boolean>;
 
   constructor(private store: Store) {
     this.sneakers$ = this.store.select(SneakerState.sneakers);
+    this.hasMorePages$ = this.store.select(SneakerState.hasMorePages);
   }
 
   async ngOnInit(): Promise<void> {
+    this.store.dispatch(new sneakersActions.LoadSneakersPage());
+    this.store.dispatch(new sneakersActions.LoadBrands());
+    this.store.dispatch(new sneakersActions.LoadSizes());
+  }
+
+  onScroll() {
     this.store.dispatch(new sneakersActions.LoadSneakersPage());
   }
 }

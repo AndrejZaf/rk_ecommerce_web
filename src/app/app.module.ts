@@ -11,7 +11,8 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
 import { SharedModule } from './shared/shared.module';
 import { SneakersModule } from './modules/sneakers/sneakers.module';
 import { NgxsModule } from '@ngxs/store';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LoadingService } from './core/services/loading.service';
 
 @NgModule({
   declarations: [

@@ -4,7 +4,7 @@
     infiniteScroll
     [infiniteScrollDistance]="2"
     [infiniteScrollThrottle]="500"
-    (scrolled)="onScroll()"
+    (scrolled)="onScroll.emit()"
     [scrollWindow]="true"
   >
     <app-sneaker-card
@@ -15,7 +15,7 @@
       [sneakerUrl]="sneaker.images[1]"
     ></app-sneaker-card>
   </div>
-  <div *ngIf="!(hasMorePages$ | async)" class="mt-5 text-center">
+  <div *ngIf="!hasMorePages" class="mt-5 text-center">
     <h3>Bummer! :(</h3>
     We reached the end of the sneaker universe
   </div>

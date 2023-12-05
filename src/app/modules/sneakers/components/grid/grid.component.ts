@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
 import * as sneakersActions from '../../store/store/sneaker.actions';
 import { Store } from '@ngxs/store';
@@ -12,17 +12,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./grid.component.scss'],
 })
 export class GridComponent {
-  @Input()
-  sneakers: SneakerDTO[] | null = [];
-  hasMorePages$: Observable<boolean>;
+  @Input() sneakers: SneakerDTO[] | null = [];
+  @Input() hasMorePages: boolean | null = true;
+  @Output() onScroll = new EventEmitter<void>();
 
-  constructor(private store: Store, private router: Router) {
-    this.hasMorePages$ = this.store.select(SneakerState.hasMorePages);
-  }
-
-  onScroll() {
-    this.store.dispatch(new sneakersActions.LoadSneakersPage());
-  }
+  constructor(private router: Router) {}
 
   redirectToSneaker(sneakerId: number) {
     this.router.navigate([`/sneakers/${sneakerId}`]);

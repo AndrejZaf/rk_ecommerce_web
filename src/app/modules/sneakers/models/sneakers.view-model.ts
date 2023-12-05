@@ -1,3 +1,4 @@
+import { BrandDTO } from '../dtos/brand.dto';
 import { SneakerDTO } from '../dtos/sneaker.dto';
 
 export interface SneakersViewModel {
@@ -6,4 +7,7 @@ export interface SneakersViewModel {
   page: number;
   size: number;
   hasMorePages: boolean;
+  brands: BrandDTO[];
+  sizes: number[];
+  genders: string[];
 }

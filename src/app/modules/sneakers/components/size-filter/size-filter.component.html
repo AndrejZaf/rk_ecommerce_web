@@ -1,21 +1,11 @@
 <h6 class="fw-bold text-uppercase border-bottom pb-2">Sneaker Size</h6>
 <div class="row gap-2 justify-content-center user-select-none">
-  <div class="size-element col-3 text-center">5</div>
-  <div class="size-element col-3 text-center">5.5</div>
-  <div class="size-element col-3 text-center">6</div>
-  <div class="size-element col-3 text-center">6.5</div>
-  <div class="size-element col-3 text-center">7</div>
-  <div class="size-element col-3 text-center">7.5</div>
-  <div class="size-element col-3 text-center">8</div>
-  <div class="size-element col-3 text-center">9.5</div>
-  <div class="size-element col-3 text-center">9</div>
-  <div class="size-element col-3 text-center">9.5</div>
-  <div class="size-element col-3 text-center">10</div>
-  <div class="size-element col-3 text-center">10.5</div>
-  <div class="size-element col-3 text-center">11</div>
-  <div class="size-element col-3 text-center">11.5</div>
-  <div class="size-element col-3 text-center">12</div>
-  <div class="size-element col-3 text-center">12.5</div>
-  <div class="size-element col-3 text-center">13</div>
-  <div class="size-element col-3 text-center">13.5</div>
+  <div
+    *ngFor="let size of sizes"
+    class="size-element col-3 text-center"
+    (click)="selectNewSize(size)"
+    [ngClass]="{ selected: selectedSizes.indexOf(size) !== -1 }"
+  >
+    {{ size }}
+  </div>
 </div>
