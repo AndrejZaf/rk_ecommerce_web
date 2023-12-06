@@ -19,7 +19,6 @@ export class SizeFilterComponent {
       const index = this.selectedSizes.indexOf(size);
       this.selectedSizes.splice(index, 1);
     }
-    console.log(size);
     this.store.dispatch(new sneakersActions.SelectSizes(this.selectedSizes));
   }
 }
