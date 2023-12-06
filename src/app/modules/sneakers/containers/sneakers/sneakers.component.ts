@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import * as sneakersActions from '../../store/sneaker.actions';
 import { Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import { BrandDTO } from '../../dtos/brand.dto';
   templateUrl: './sneakers.component.html',
   styleUrls: ['./sneakers.component.scss'],
 })
-export class SneakersComponent implements OnInit {
+export class SneakersComponent implements OnInit, OnDestroy {
   public sneakers$: Observable<SneakerDTO[]>;
   public hasMorePages$: Observable<boolean>;
 
@@ -23,6 +23,10 @@ export class SneakersComponent implements OnInit {
     this.store.dispatch(new sneakersActions.LoadSneakersPage());
     this.store.dispatch(new sneakersActions.LoadBrands());
     this.store.dispatch(new sneakersActions.LoadSizes());
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(new sneakersActions.ResetStore());
   }
 
   onScroll() {

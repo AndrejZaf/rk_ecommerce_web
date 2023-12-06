@@ -21,6 +21,8 @@ export const sneakersState = (): SneakersViewModel => ({
   sizes: [],
   genders: [],
   selectedBrandIds: [],
+  selectedSizes: [],
+  selectedGenders: [],
 });
 
 @State<SneakersViewModel>({
@@ -118,7 +120,9 @@ export class SneakerState {
       this.sneakerService.loadSneakers(
         getState().page,
         getState().size,
-        getState().selectedBrandIds
+        getState().selectedBrandIds,
+        getState().selectedSizes,
+        getState().selectedGenders
       )
     ).pipe(
       map((data: SneakerDTO[]) => {
@@ -203,5 +207,28 @@ export class SneakerState {
   ): void {
     patchState({ selectedBrandIds: payload, page: 0, sneakers: [] });
     dispatch(new sneakersActions.LoadSneakersPage());
+  }
+
+  @Action(sneakersActions.SelectSizes)
+  selectSizes(
+    { patchState, dispatch }: StateContext<SneakersViewModel>,
+    { payload }: sneakersActions.SelectSizes
+  ): void {
+    patchState({ selectedSizes: payload, page: 0, sneakers: [] });
+    dispatch(new sneakersActions.LoadSneakersPage());
+  }
+
+  @Action(sneakersActions.SelectGenders)
+  selectGenders(
+    { patchState, dispatch }: StateContext<SneakersViewModel>,
+    { payload }: sneakersActions.SelectGenders
+  ): void {
+    patchState({ selectedGenders: payload, page: 0, sneakers: [] });
+    dispatch(new sneakersActions.LoadSneakersPage());
+  }
+
+  @Action(sneakersActions.ResetStore)
+  resetStore({ setState }: StateContext<SneakersViewModel>): void {
+    setState(sneakersState());
   }
 }

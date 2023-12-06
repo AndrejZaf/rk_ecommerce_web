@@ -11,4 +11,6 @@ export interface SneakersViewModel {
   sizes: number[];
   genders: string[];
   selectedBrandIds: number[];
+  selectedSizes: number[];
+  selectedGenders: string[];
 }

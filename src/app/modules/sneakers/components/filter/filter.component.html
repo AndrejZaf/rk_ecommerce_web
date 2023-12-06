@@ -3,6 +3,9 @@
     *ngIf="(brands$ | async)?.length"
     [brands]="brands$ | async"
   ></app-brand-filter>
-  <app-size-filter [sizes]="sizes$ | async"></app-size-filter>
+  <app-size-filter
+    *ngIf="(sizes$ | async)?.length"
+    [sizes]="sizes$ | async"
+  ></app-size-filter>
   <app-gender-filter></app-gender-filter>
 </div>

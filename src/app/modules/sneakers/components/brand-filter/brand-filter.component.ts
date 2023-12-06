@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BrandDTO } from '../../dtos/brand.dto';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import * as sneakersActions from '../../store/sneaker.actions';

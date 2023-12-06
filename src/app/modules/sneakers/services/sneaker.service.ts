@@ -6,7 +6,13 @@ import { HttpClient } from '@angular/common/http';
 interface ISneakerService {
   loadSneakersForHomepage(): Observable<SneakerDTO[]>;
   loadSelectedSneaker(id: number): Observable<SneakerDTO>;
-  loadSneakers(page: number, size: number): Observable<SneakerDTO[]>;
+  loadSneakers(
+    page: number,
+    size: number,
+    brandIds?: number[],
+    selectedSizes?: number[],
+    selectedGenders?: string[]
+  ): Observable<SneakerDTO[]>;
 }
 
 @Injectable({
@@ -26,17 +32,27 @@ export class SneakerService implements ISneakerService {
   loadSneakers(
     page: number,
     size: number,
-    brandIds?: number[]
+    brandIds?: number[],
+    selectedSizes?: number[],
+    selectedGenders?: string[]
   ): Observable<SneakerDTO[]> {
     let brandQuery = '';
-    console.log;
+    let sizeQuery = '';
+    let genderQuery = '';
     if (brandIds?.length !== 0) {
       brandQuery = `&brandIds=${brandIds?.join()}`;
     }
 
-    console.log(brandQuery);
+    if (selectedSizes?.length !== 0) {
+      sizeQuery = `&sizes=${selectedSizes?.join()}`;
+    }
+
+    if (selectedGenders?.length !== 0) {
+      genderQuery = `&genders=${selectedGenders?.join()}`;
+    }
+
     return this.http.get<SneakerDTO[]>(
-      `http://localhost:8080/api/sneaker?page=${page}&size=${size}${brandQuery}`
+      `http://localhost:8080/api/sneaker?page=${page}&size=${size}${brandQuery}${sizeQuery}${genderQuery}`
     );
   }
 }

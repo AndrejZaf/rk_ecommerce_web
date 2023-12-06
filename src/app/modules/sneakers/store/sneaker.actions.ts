@@ -82,3 +82,17 @@ export class SelectBrandsIds {
   static readonly type = '[Sneakers] Select Brand Ids';
   constructor(readonly payload: number[]) {}
 }
+
+export class SelectSizes {
+  static readonly type = '[Sneakers] Select Sizes';
+  constructor(readonly payload: number[]) {}
+}
+
+export class SelectGenders {
+  static readonly type = '[Sneakers] Select Genders';
+  constructor(readonly payload: string[]) {}
+}
+
+export class ResetStore {
+  static readonly type = '[Sneakers] Reset Store';
+}
