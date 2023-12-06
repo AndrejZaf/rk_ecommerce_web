@@ -17,13 +17,13 @@ export class HomeService implements IHomeService {
 
   loadSneakers(): Observable<SneakerDTO[]> {
     return this.http.get<SneakerDTO[]>(
-      'http://localhost:8080/api/sneaker?page=0&size=6'
+      'http://localhost:8080/api/inventory/sneaker?page=0&size=6'
     );
   }
 
   loadPremiumSneaker(): Observable<PremiumSneakerDTO> {
     return this.http.get<PremiumSneakerDTO>(
-      'http://localhost:8080/api/sneaker/premium'
+      'http://localhost:8080/api/inventory/sneaker/premium'
     );
   }
 }

@@ -3,6 +3,8 @@
   <div
     *ngFor="let sneakerSize of sneakerSizes"
     class="size-element col-3 text-center"
+    (click)="selectSize.emit(sneakerSize.size)"
+    [ngClass]="{ selected: selectedSize === sneakerSize.size }"
   >
     {{ sneakerSize.size }}
   </div>

@@ -22,11 +22,15 @@ export class SneakerService implements ISneakerService {
   constructor(private http: HttpClient) {}
 
   loadSneakersForHomepage(): Observable<SneakerDTO[]> {
-    return this.http.get<SneakerDTO[]>('http://localhost:8080/api/sneaker');
+    return this.http.get<SneakerDTO[]>(
+      'http://localhost:8080/api/inventory/sneaker'
+    );
   }
 
   loadSelectedSneaker(id: number): Observable<SneakerDTO> {
-    return this.http.get<SneakerDTO>(`http://localhost:8080/api/sneaker/${id}`);
+    return this.http.get<SneakerDTO>(
+      `http://localhost:8080/api/inventory/sneaker/${id}`
+    );
   }
 
   loadSneakers(
@@ -52,7 +56,7 @@ export class SneakerService implements ISneakerService {
     }
 
     return this.http.get<SneakerDTO[]>(
-      `http://localhost:8080/api/sneaker?page=${page}&size=${size}${brandQuery}${sizeQuery}${genderQuery}`
+      `http://localhost:8080/api/inventory/sneaker?page=${page}&size=${size}${brandQuery}${sizeQuery}${genderQuery}`
     );
   }
 }

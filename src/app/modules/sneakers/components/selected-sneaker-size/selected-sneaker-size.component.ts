@@ -1,4 +1,11 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { SneakerSizeDTO } from './../../dtos/sneaker-size.dto';
 
 @Component({
@@ -8,4 +15,6 @@ import { SneakerSizeDTO } from './../../dtos/sneaker-size.dto';
 })
 export class SelectedSneakerSizeComponent {
   @Input() sneakerSizes: SneakerSizeDTO[] | undefined;
+  @Input() selectedSize: number;
+  @Output() selectSize: EventEmitter<number> = new EventEmitter();
 }

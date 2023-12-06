@@ -13,6 +13,8 @@ export class BrandService implements IBrandService {
   constructor(private http: HttpClient) {}
 
   loadBrands(): Observable<BrandDTO[]> {
-    return this.http.get<BrandDTO[]>('http://localhost:8080/api/brand');
+    return this.http.get<BrandDTO[]>(
+      'http://localhost:8080/api/inventory/brand'
+    );
   }
 }
