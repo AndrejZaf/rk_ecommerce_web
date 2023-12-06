@@ -1,21 +1,21 @@
 <div
   class="d-flex justify-content-between align-items-center sneaker-info mt-5"
-  *ngIf="selectedSneaker$ | async"
+  *ngIf="selectedSneaker"
 >
   <div class="sneaker-content">
     <h2 class="fw-bold text-uppercase">
-      {{ (selectedSneaker$ | async)?.name }}
+      {{ selectedSneaker.name }}
     </h2>
     <p>
-      {{ (selectedSneaker$ | async)?.description }}
+      {{ selectedSneaker.description }}
     </p>
     <app-selected-sneaker-size
-      [sneakerSizes]="(selectedSneaker$ | async)?.sizes"
+      [sneakerSizes]="selectedSneaker.sizes"
       [selectedSize]="selectedSize"
       (selectSize)="selectNewSize($event)"
     ></app-selected-sneaker-size>
   </div>
-  <img [src]="(selectedSneaker$ | async)?.images?.[1]" />
+  <img [src]="selectedSneaker.images[1]" />
 </div>
 <div class="d-flex justify-content-end gap-3">
   <button class="btn btn-link favorite-button">
@@ -25,6 +25,6 @@
     Add to Cart
   </button>
   <div class="d-flex align-items-center price-box fw-bold">
-    <span>{{ (selectedSneaker$ | async)?.price | currency : "USD" }}</span>
+    <span>{{ selectedSneaker?.price | currency : "USD" }}</span>
   </div>
 </div>

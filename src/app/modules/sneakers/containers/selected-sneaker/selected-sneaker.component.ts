@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -13,16 +13,18 @@ import { StorageService } from '../../services/storage.service';
   templateUrl: './selected-sneaker.component.html',
   styleUrls: ['./selected-sneaker.component.scss'],
 })
-export class SelectedSneakerComponent implements OnInit {
-  public selectedSneaker$: Observable<SneakerDTO | undefined>;
-  public selectedSize: number;
+export class SelectedSneakerComponent implements OnInit, OnDestroy {
+  public selectedSneaker: SneakerDTO | undefined;
+  public selectedSize: number | undefined;
 
   constructor(
     private store: Store,
     private route: ActivatedRoute,
     private storageService: StorageService
   ) {
-    this.selectedSneaker$ = this.store.select(SneakerState.selectedSneaker);
+    this.store.select(SneakerState.selectedSneaker).subscribe((sneaker) => {
+      this.selectedSneaker = sneaker;
+    });
   }
 
   async ngOnInit(): Promise<void> {
@@ -33,22 +35,28 @@ export class SelectedSneakerComponent implements OnInit {
   }
 
   addSneakerToCart() {
-    this.selectedSneaker$.subscribe((sneaker) => {
-      const cartItem: CartItemDTO = {
-        sneakerId: sneaker?.id,
-        size: this.selectedSize,
-      };
-      this.storageService.addItemsToCart(cartItem);
-      console.log(cartItem);
-    });
+    if (!this.selectedSize) {
+      console.error('Select size');
+      return;
+    }
+
+    const cartItem: CartItemDTO = {
+      sneakerId: this.selectedSneaker?.id,
+      size: this.selectedSize,
+    };
+    this.storageService.addItemsToCart(cartItem);
   }
 
   selectNewSize(size: number) {
-    if (!this.selectedSize) {
-      this.selectedSize = size;
+    if (this.selectedSize === size) {
+      this.selectedSize = 0;
     } else {
-      this.selectedSize = -1;
+      this.selectedSize = size;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(new sneakersActions.ResetStore());
   }
 
   private loadData(id: number): void {

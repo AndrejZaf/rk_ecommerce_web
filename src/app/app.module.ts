@@ -13,6 +13,7 @@ import { SneakersModule } from './modules/sneakers/sneakers.module';
 import { NgxsModule } from '@ngxs/store';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoadingService } from './core/services/loading.service';
+import { ShoppingCartModule } from './modules/shopping-cart/shopping-cart.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { LoadingService } from './core/services/loading.service';
     HttpClientModule,
     SharedModule,
     SneakersModule,
+    ShoppingCartModule,
     NgxsModule.forRoot([]),
   ],
   providers: [],

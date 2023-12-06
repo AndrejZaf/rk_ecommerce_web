@@ -19,6 +19,13 @@ const routes: Routes = [
             (m) => m.SneakersModule
           ),
       },
+      {
+        path: 'shopping-cart',
+        loadChildren: () =>
+          import('./modules/shopping-cart/shopping-cart.module').then(
+            (m) => m.ShoppingCartModule
+          ),
+      },
     ],
   },
   { path: '**', redirectTo: '/', pathMatch: 'full' },

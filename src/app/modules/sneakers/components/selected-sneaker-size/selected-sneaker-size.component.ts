@@ -15,6 +15,6 @@ import { SneakerSizeDTO } from './../../dtos/sneaker-size.dto';
 })
 export class SelectedSneakerSizeComponent {
   @Input() sneakerSizes: SneakerSizeDTO[] | undefined;
-  @Input() selectedSize: number;
+  @Input() selectedSize: number | undefined;
   @Output() selectSize: EventEmitter<number> = new EventEmitter();
 }

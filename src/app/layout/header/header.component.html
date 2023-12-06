@@ -3,9 +3,12 @@
   aria-label="Thirteenth navbar example"
 >
   <div class="container">
-    <a class="navbar-brand col-lg-2 me-0 fw-semibold text-uppercase" href="#"
-      >Rare Kickz</a
+    <div
+      class="navbar-brand col-lg-2 me-0 fw-semibold text-uppercase logo"
+      (click)="navigateHome()"
     >
+      Rare Kickz
+    </div>
     <button
       class="navbar-toggler"
       type="button"
@@ -35,7 +38,7 @@
       </ul>
     </div>
     <div class="d-lg-flex col-lg-2 justify-content-lg-end d-none d-lg-block">
-      <i class="bi bi-cart3 cart-icon"></i>
+      <i class="bi bi-cart3 cart-icon" (click)="navigateToCart()"></i>
     </div>
   </div>
 </nav>

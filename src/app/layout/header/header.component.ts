@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,4 +13,14 @@ export class HeaderComponent {
     { link: '/contact', title: 'Contact' },
   ];
   isCollapsed = true;
+
+  constructor(private router: Router) {}
+
+  navigateToCart(): void {
+    this.router.navigate(['/shopping-cart']);
+  }
+
+  navigateHome(): void {
+    this.router.navigate(['/']);
+  }
 }
