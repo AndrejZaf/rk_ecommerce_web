@@ -25,4 +25,15 @@
       <i class="bi bi-x remove-item" (click)="removeItem(sneaker.id)"></i>
     </div>
   </div>
+  <div class="delivery-info mt-5">
+    <app-delivery-info
+      [form]="form"
+      [submitted]="isSubmitted"
+    ></app-delivery-info>
+  </div>
+  <app-total-info
+    (checkout)="checkout()"
+    [isValid]="form.valid"
+    [sneakers]="cartSneakers$ | async"
+  ></app-total-info>
 </div>
