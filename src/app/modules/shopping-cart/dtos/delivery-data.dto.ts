@@ -1,4 +1,4 @@
-export interface DeliveryDataDTO {
+export interface DeliveryInfoDTO {
   firstName: string;
   lastName: string;
   email: string;

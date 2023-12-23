@@ -15,7 +15,7 @@ export class TotalInfoComponent {
   sneakers: SneakerDTO[] | null;
 
   calculateTotalPrice(): number {
-    if (this.sneakers) {
+    if (this.sneakers?.length) {
       return this.sneakers
         .map((sneaker) => sneaker.price)
         .reduce((total, item) => total + item);

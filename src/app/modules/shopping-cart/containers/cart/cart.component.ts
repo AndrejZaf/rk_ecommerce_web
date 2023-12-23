@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CartDTO } from '../../dtos/cart.dto';
 import { Store } from '@ngxs/store';
 import * as cartActions from '../../store/cart.actions';
 import { Observable } from 'rxjs';
@@ -7,6 +6,11 @@ import { SneakerDTO } from '../../dtos/sneaker.dto';
 import { CartState } from '../../store/cart.store';
 import { CartItemDTO } from '../../dtos/cart-item.dto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DeliveryInfoDTO } from '../../dtos/delivery-data.dto';
+import { OrderDTO } from '../../dtos/order.dto';
+import { CartService } from '../../services/cart.service';
+import { SneakerOrderDTO } from '../../dtos/sneaker-order.dto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +22,12 @@ export class CartComponent implements OnInit {
   form: FormGroup;
   isSubmitted: boolean = false;
 
-  constructor(private store: Store, private fb: FormBuilder) {
+  constructor(
+    private store: Store,
+    private fb: FormBuilder,
+    private cartService: CartService,
+    private router: Router
+  ) {
     this.cartSneakers$ = this.store.select(CartState.cartSneakers);
     this.form = this.fb.group({
       firstName: this.fb.control('', [Validators.required]),
@@ -57,10 +66,34 @@ export class CartComponent implements OnInit {
 
   checkout() {
     this.isSubmitted = true;
-    console.log(this.form);
-    console.log(this.form);
     if (!this.form.valid) {
       return;
     }
+    const cartFromStorage = localStorage.getItem('cart');
+    const items = JSON.parse(cartFromStorage!) as CartItemDTO[];
+    const deliveryInfo: DeliveryInfoDTO = {
+      city: this.form.controls['city'].value,
+      country: this.form.controls['country'].value,
+      email: this.form.controls['email'].value,
+      firstName: this.form.controls['firstName'].value,
+      lastName: this.form.controls['lastName'].value,
+      phoneNumber: this.form.controls['phoneNumber'].value,
+      postalCode: this.form.controls['postalCode'].value,
+      street: this.form.controls['street'].value,
+    };
+
+    const sneakers = items.map(item => {
+      const sneaker: SneakerOrderDTO = {
+        id: item.sneakerId,
+        size: item.size,
+      }
+      return sneaker;
+    })
+
+    const order: OrderDTO = {
+      deliveryInfo,
+      sneakers: sneakers,
+    };
+    this.cartService.createOrder(order).subscribe((orderIdentifier) => this.router.navigate([`/checkout/${orderIdentifier.orderId}`]));
   }
 }
