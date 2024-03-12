@@ -94,6 +94,6 @@ export class CartComponent implements OnInit {
       deliveryInfo,
       sneakers: sneakers,
     };
-    this.cartService.createOrder(order).subscribe((orderIdentifier) => this.router.navigate([`/checkout/${orderIdentifier.orderId}`]));
+    this.cartService.createOrder(order).subscribe((orderIdentifier) => this.router.navigate([`/shopping-cart/${orderIdentifier.orderId}/checkout`]));
   }
 }

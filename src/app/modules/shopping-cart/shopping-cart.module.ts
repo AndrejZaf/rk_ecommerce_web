@@ -9,6 +9,9 @@ import { ProductGridComponent } from './components/product-grid/product-grid.com
 import { DeliveryInfoComponent } from './components/delivery-info/delivery-info.component';
 import { TotalInfoComponent } from './components/total-info/total-info.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckoutComponent } from './containers/checkout/checkout.component';
+import { SuccessfulPurchaseComponent } from './containers/successful-purchase/successful-purchase.component';
+import { FailedPurchaseComponent } from './containers/failed-purchase/failed-purchase.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProductGridComponent,
     DeliveryInfoComponent,
     TotalInfoComponent,
+    CheckoutComponent,
+    SuccessfulPurchaseComponent,
+    FailedPurchaseComponent,
   ],
   imports: [
     CommonModule,
