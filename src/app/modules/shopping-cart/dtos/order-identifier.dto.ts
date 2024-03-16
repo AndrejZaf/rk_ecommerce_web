@@ -1,3 +1,3 @@
 export interface OrderIdentifierDTO {
-    orderId: string;
+    sessionUrl: string;
 }
