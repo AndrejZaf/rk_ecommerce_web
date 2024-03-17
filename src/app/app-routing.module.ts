@@ -26,6 +26,11 @@ const routes: Routes = [
             (m) => m.ShoppingCartModule
           ),
       },
+      {
+        path: 'orders',
+        loadChildren: () =>
+          import('./modules/orders/orders.module').then((m) => m.OrdersModule),
+      },
     ],
   },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
