@@ -1,1 +1,16 @@
-<p>order works!</p>
+<div class="mt-5 text-center mx-auto" *ngIf="order && sneakers">
+  <h3>Order Preview</h3>
+  <h5 class="fw-semibold">Status: {{ order.orderStatus }}</h5>
+  <div *ngFor="let sneaker of sneakers" class="row sneaker-row">
+    <img
+      [src]="sneaker.images[1]"
+      class="col-md-4 d-flex justify-content-center align-items-center"
+    />
+    <div class="col-md-4 d-flex justify-content-center align-items-center">
+      {{ sneaker.name }}
+    </div>
+    <div class="col-md-4 d-flex justify-content-center align-items-center">
+      {{ sneaker.price | currency : "USD" }}
+    </div>
+  </div>
+</div>

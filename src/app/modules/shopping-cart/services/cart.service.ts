@@ -4,13 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { OrderDTO } from '../dtos/order.dto';
 import { OrderIdentifierDTO } from '../dtos/order-identifier.dto';
-import { OrderVerificationDTO } from '../dtos/order-verification.dto';
 import { StripeSessionDTO } from '../dtos/stripe-session.dto';
 
 interface ICartService {
   getSneakersForCart(sneakerIds: number[]): Observable<SneakerDTO[]>;
   createOrder(orderDTO: OrderDTO): Observable<OrderIdentifierDTO>;
-  verifyOrder(id: string): Observable<OrderVerificationDTO>;
   payOrder(id: string): Observable<StripeSessionDTO>;
 }
 
@@ -36,12 +34,6 @@ export class CartService implements ICartService {
           Accept: 'application/json',
         },
       }
-    );
-  }
-
-  verifyOrder(id: string): Observable<OrderVerificationDTO> {
-    return this.http.get<OrderVerificationDTO>(
-      `http://localhost:8080/api/order/${id}`
     );
   }
 
