@@ -22,6 +22,7 @@ export class OrderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // TODO: Create a store for this fetch
     this.route.params
       .pipe(
         switchMap((params: Params) => {
