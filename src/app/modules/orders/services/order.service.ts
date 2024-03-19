@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OrderVerificationDTO } from '../dtos/order-verification.dto';
+import { OrderPreviewDTO } from '../dtos/order-preview.dto';
 import { SneakerDTO } from '../dtos/sneaker.dto';
 
 interface IOrderService {
-  fetchOrder(id: string): Observable<OrderVerificationDTO>;
+  fetchOrder(id: string): Observable<OrderPreviewDTO>;
   getSneakersForOrder(sneakerIds: number[]): Observable<SneakerDTO[]>;
 }
 
@@ -15,8 +15,8 @@ interface IOrderService {
 export class OrderService implements IOrderService {
   constructor(private http: HttpClient) {}
 
-  fetchOrder(id: string): Observable<OrderVerificationDTO> {
-    return this.http.get<OrderVerificationDTO>(
+  fetchOrder(id: string): Observable<OrderPreviewDTO> {
+    return this.http.get<OrderPreviewDTO>(
       `http://localhost:8080/api/order/${id}`
     );
   }

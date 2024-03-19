@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../services/order.service';
 import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { OrderVerificationDTO } from '../../dtos/order-verification.dto';
-import { OrderIdentifierDTO } from 'src/app/modules/shopping-cart/dtos/order-identifier.dto';
+import { OrderPreviewDTO } from '../../dtos/order-preview.dto';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
-import { OrderStatusKey } from '../../utils/order-status.util';
-import { OrderStatus } from 'src/app/modules/shopping-cart/enums/order-status.enum';
 
 @Component({
   selector: 'app-order',
@@ -14,7 +11,7 @@ import { OrderStatus } from 'src/app/modules/shopping-cart/enums/order-status.en
   styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent implements OnInit {
-  order: OrderVerificationDTO;
+  order: OrderPreviewDTO;
   sneakers: SneakerDTO[];
   constructor(
     private orderService: OrderService,
@@ -29,7 +26,7 @@ export class OrderComponent implements OnInit {
           const id = params['id'];
           return this.orderService.fetchOrder(id);
         }),
-        switchMap((order: OrderVerificationDTO) => {
+        switchMap((order: OrderPreviewDTO) => {
           this.order = order;
           const sneakerIds = order.orderInventory.map(
             (orderInv) => orderInv.sneakerId
