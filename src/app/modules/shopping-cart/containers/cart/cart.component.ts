@@ -82,19 +82,20 @@ export class CartComponent implements OnInit {
       street: this.form.controls['street'].value,
     };
 
-    const sneakers = items.map(item => {
+    const sneakers = items.map((item) => {
       const sneaker: SneakerOrderDTO = {
         id: item.sneakerId,
         size: item.size,
-      }
+      };
       return sneaker;
-    })
+    });
 
     const order: OrderDTO = {
       deliveryInfo,
       sneakers: sneakers,
     };
     this.cartService.createOrder(order).subscribe((order) => {
+      localStorage.clear();
       window.location.href = order.sessionUrl;
     });
   }
