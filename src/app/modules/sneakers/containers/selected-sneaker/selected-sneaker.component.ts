@@ -8,6 +8,7 @@ import { SneakerState } from '../../store/sneaker.store';
 import { CartItemDTO } from './../../dtos/cart-item.dto';
 import { StorageService } from '../../services/storage.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { CartStorageService } from 'src/app/shared/services/cart-storage.service';
 
 @Component({
   selector: 'app-selected-sneaker',
@@ -21,7 +22,7 @@ export class SelectedSneakerComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store,
     private route: ActivatedRoute,
-    private storageService: StorageService,
+    private cartStorageService: CartStorageService,
     private toastService: ToastService
   ) {
     this.store.select(SneakerState.selectedSneaker).subscribe((sneaker) => {
@@ -46,7 +47,7 @@ export class SelectedSneakerComponent implements OnInit, OnDestroy {
       sneakerId: this.selectedSneaker?.id,
       size: this.selectedSize,
     };
-    this.storageService.addItemsToCart(cartItem);
+    this.cartStorageService.setItem(cartItem);
     this.toastService.show('Sneaker successfully added to cart', '');
   }
 

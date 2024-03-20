@@ -37,8 +37,15 @@
         </li>
       </ul>
     </div>
-    <div class="d-lg-flex col-lg-2 justify-content-lg-end d-none d-lg-block">
+    <div
+      class="d-lg-flex col-lg-2 justify-content-lg-end d-none d-lg-block position-relative"
+    >
       <i class="bi bi-cart3 cart-icon" (click)="navigateToCart()"></i>
+      <span
+        *ngIf="totalItems"
+        class="position-absolute top-0 start-100 badge rounded-pill bg-danger custom-badge"
+        >{{ totalItems }}</span
+      >
     </div>
   </div>
 </nav>

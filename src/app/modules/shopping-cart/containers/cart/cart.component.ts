@@ -12,6 +12,7 @@ import { CartService } from '../../services/cart.service';
 import { SneakerOrderDTO } from '../../dtos/sneaker-order.dto';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { CartStorageService } from 'src/app/shared/services/cart-storage.service';
 
 @Component({
   selector: 'app-cart',
@@ -28,7 +29,8 @@ export class CartComponent implements OnInit {
     private fb: FormBuilder,
     private cartService: CartService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private cartStorageService: CartStorageService
   ) {
     this.cartSneakers$ = this.store.select(CartState.cartSneakers);
     this.form = this.fb.group({
@@ -59,10 +61,7 @@ export class CartComponent implements OnInit {
   }
 
   removeItem(sneakerId: number) {
-    const cartFromStorage = localStorage.getItem('cart');
-    const items = JSON.parse(cartFromStorage!) as CartItemDTO[];
-    const newCart = items.filter((item) => item.sneakerId !== sneakerId);
-    localStorage.setItem('cart', JSON.stringify(newCart));
+    this.cartStorageService.removeItem(sneakerId);
     this.store
       .dispatch(new cartActions.RemoveSneaker(sneakerId))
       .subscribe(() =>
