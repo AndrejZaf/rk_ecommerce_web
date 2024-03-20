@@ -1,39 +1,46 @@
 <div class="mt-5">
-  <div class="title h3 fw-semibold">Your Cart</div>
-  <div class="row header-row">
-    <div class="col-md-3"></div>
-    <div class="col-md-3 header-name">Product Name</div>
-    <div class="col-md-2 header-name">Size</div>
-    <div class="col-md-2 header-name">Price</div>
-    <div class="col-md-2"></div>
+  <div class="mt-5 text-center" *ngIf="(cartSneakers$ | async)?.length === 0">
+    <h3>Bummer! :(</h3>
+    Please select sneakers in order to preview the cart and get your favorite
+    shoes!
   </div>
-  <div *ngFor="let sneaker of cartSneakers$ | async" class="row sneaker-row">
-    <img
-      [src]="sneaker.images[1]"
-      class="col-md-3 d-flex justify-content-center align-items-center"
-    />
-    <div class="col-md-3 d-flex justify-content-center align-items-center">
-      {{ sneaker.name }}
+  <div *ngIf="(cartSneakers$ | async)?.length !== 0">
+    <div class="title h3 fw-semibold">Your Cart</div>
+    <div class="row header-row">
+      <div class="col-md-3"></div>
+      <div class="col-md-3 header-name">Product Name</div>
+      <div class="col-md-2 header-name">Size</div>
+      <div class="col-md-2 header-name">Price</div>
+      <div class="col-md-2"></div>
     </div>
-    <div class="col-md-2 d-flex justify-content-center align-items-center">
-      {{ fetchSneakerQuantity(sneaker.id) }}
+    <div *ngFor="let sneaker of cartSneakers$ | async" class="row sneaker-row">
+      <img
+        [src]="sneaker.images[1]"
+        class="col-md-3 d-flex justify-content-center align-items-center"
+      />
+      <div class="col-md-3 d-flex justify-content-center align-items-center">
+        {{ sneaker.name }}
+      </div>
+      <div class="col-md-2 d-flex justify-content-center align-items-center">
+        {{ fetchSneakerQuantity(sneaker.id) }}
+      </div>
+      <div class="col-md-2 d-flex justify-content-center align-items-center">
+        {{ sneaker.price | currency : "USD" }}
+      </div>
+      <div class="col-md-2 d-flex justify-content-center align-items-center">
+        <i class="bi bi-x remove-item" (click)="removeItem(sneaker.id)"></i>
+      </div>
     </div>
-    <div class="col-md-2 d-flex justify-content-center align-items-center">
-      {{ sneaker.price | currency : "USD" }}
+    <div class="delivery-info mt-5">
+      <app-delivery-info
+        [form]="form"
+        [submitted]="isSubmitted"
+      ></app-delivery-info>
     </div>
-    <div class="col-md-2 d-flex justify-content-center align-items-center">
-      <i class="bi bi-x remove-item" (click)="removeItem(sneaker.id)"></i>
-    </div>
+    <app-total-info
+      (checkout)="checkout()"
+      [isValid]="form.valid"
+      [sneakers]="cartSneakers$ | async"
+    ></app-total-info>
   </div>
-  <div class="delivery-info mt-5">
-    <app-delivery-info
-      [form]="form"
-      [submitted]="isSubmitted"
-    ></app-delivery-info>
-  </div>
-  <app-total-info
-    (checkout)="checkout()"
-    [isValid]="form.valid"
-    [sneakers]="cartSneakers$ | async"
-  ></app-total-info>
 </div>
