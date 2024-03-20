@@ -11,9 +11,9 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
 import { SharedModule } from './shared/shared.module';
 import { SneakersModule } from './modules/sneakers/sneakers.module';
 import { NgxsModule } from '@ngxs/store';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { LoadingService } from './core/services/loading.service';
+import { HttpClientModule } from '@angular/common/http';
 import { ShoppingCartModule } from './modules/shopping-cart/shopping-cart.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import { ShoppingCartModule } from './modules/shopping-cart/shopping-cart.module
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
     NgbModule,

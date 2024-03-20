@@ -88,3 +88,11 @@ body {
 .form-check-input[type="checkbox"] {
   border-radius: unset;
 }
+
+.toast-container .ngx-toastr {
+  border-radius: unset !important;
+}
+
+.toast-success {
+  background-color: #36454f !important;
+}

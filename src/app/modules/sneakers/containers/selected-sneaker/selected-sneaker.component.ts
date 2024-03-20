@@ -7,6 +7,7 @@ import * as sneakersActions from '../../store/sneaker.actions';
 import { SneakerState } from '../../store/sneaker.store';
 import { CartItemDTO } from './../../dtos/cart-item.dto';
 import { StorageService } from '../../services/storage.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'app-selected-sneaker',
@@ -20,7 +21,8 @@ export class SelectedSneakerComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store,
     private route: ActivatedRoute,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private toastService: ToastService
   ) {
     this.store.select(SneakerState.selectedSneaker).subscribe((sneaker) => {
       this.selectedSneaker = sneaker;
@@ -36,7 +38,7 @@ export class SelectedSneakerComponent implements OnInit, OnDestroy {
 
   addSneakerToCart() {
     if (!this.selectedSize) {
-      console.error('Select size');
+      this.toastService.warn('Please select sneaker size', '');
       return;
     }
 
@@ -45,9 +47,15 @@ export class SelectedSneakerComponent implements OnInit, OnDestroy {
       size: this.selectedSize,
     };
     this.storageService.addItemsToCart(cartItem);
+    this.toastService.show('Sneaker successfully added to cart', '');
   }
 
   selectNewSize(size: number) {
+    const sneakerSize = this.selectedSneaker?.sizes.find(
+      (sneakerSize) => sneakerSize.size === size
+    );
+    if (sneakerSize?.quantity === 0) return;
+
     if (this.selectedSize === size) {
       this.selectedSize = 0;
     } else {

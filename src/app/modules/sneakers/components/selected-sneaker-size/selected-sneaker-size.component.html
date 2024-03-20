@@ -2,10 +2,17 @@
 <div class="d-flex flex-wrap gap-2 justify-content-start user-select-none">
   <div
     *ngFor="let sneakerSize of sneakerSizes"
-    class="size-element col-3 text-center"
+    class="col-3 text-center"
     (click)="selectSize.emit(sneakerSize.size)"
-    [ngClass]="{ selected: selectedSize === sneakerSize.size }"
+    [ngClass]="{
+      'size-element': sneakerSize.quantity !== 0,
+      selected: selectedSize === sneakerSize.size,
+      disabled: sneakerSize.quantity === 0
+    }"
   >
     {{ sneakerSize.size }}
   </div>
+  <p class="mt-2 small fw-semibold">
+    You are only allowed to buy a single pair!
+  </p>
 </div>
