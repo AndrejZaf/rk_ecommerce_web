@@ -12,7 +12,11 @@
       <p>
         {{ (premiumSneaker$ | async)?.description }}
       </p>
-      <button class="btn btn-outline-charcoal-alt btn-lg">
+      <button
+        *ngIf="premiumSneaker$ | async as premiumSneaker"
+        class="btn btn-outline-charcoal-alt btn-lg"
+        (click)="redirectToSneaker(premiumSneaker.id)"
+      >
         Buy {{ (premiumSneaker$ | async)?.name }}
       </button>
     </div>
