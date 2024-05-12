@@ -1,1 +1,7 @@
-<p>brands-page works!</p>
+<div class="d-flex flex-wrap gap-4 justify-content-center">
+  <app-sneaker-card
+    *ngFor="let brand of brands"
+    [sneakerName]="brand.name"
+    [sneakerUrl]="brand.imageData"
+  ></app-sneaker-card>
+</div>

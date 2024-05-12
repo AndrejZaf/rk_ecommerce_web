@@ -6,7 +6,7 @@
   <div class="data-card text-center">
     <img class="img-fluid" [src]="sneakerUrl" />
     <h5 class="fw-semibold text-truncate">{{ sneakerName }}</h5>
-    <h5 [ngClass]="!showInfo ? 'invisible' : 'visible'">
+    <h5 *ngIf="sneakerPrice" [ngClass]="!showInfo ? 'invisible' : 'visible'">
       Price: {{ sneakerPrice | currency : "USD" : "symbol-narrow" }}
     </h5>
     <h5></h5>
