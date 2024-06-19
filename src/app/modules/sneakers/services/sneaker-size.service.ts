@@ -14,7 +14,7 @@ export class SneakerSizeService implements ISneakerSizeService {
 
   loadSneakerSizes(): Observable<number[]> {
     return this.http.get<number[]>(
-      'http://localhost:8080/api/inventory/sneaker-size'
+      'http://localhost:8080/api/inventory/sneaker-sizes'
     );
   }
 }

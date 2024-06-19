@@ -23,7 +23,7 @@ export class OrderService implements IOrderService {
 
   getSneakersForOrder(sneakerIds: number[]): Observable<SneakerDTO[]> {
     return this.http.get<SneakerDTO[]>(
-      `http://localhost:8080/api/inventory/sneaker/cart?ids=${sneakerIds}`
+      `http://localhost:8080/api/inventory/sneakers/cart?ids=${sneakerIds}`
     );
   }
 }
