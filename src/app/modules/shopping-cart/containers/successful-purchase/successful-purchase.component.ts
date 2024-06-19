@@ -16,7 +16,6 @@ export class SuccessfulPurchaseComponent {
   navigateToOrderPreview(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
-      console.log(id);
       id && this.router.navigate([`/orders/${id}`]);
     });
   }

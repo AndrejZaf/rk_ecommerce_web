@@ -17,7 +17,6 @@ export class StorageService implements IStorageService {
       const itemExists = items.filter(
         (item) => item.sneakerId === cartItem.sneakerId
       )[0];
-      console.log(itemExists);
       if (itemExists) {
         itemExists.size = cartItem.size;
       } else {

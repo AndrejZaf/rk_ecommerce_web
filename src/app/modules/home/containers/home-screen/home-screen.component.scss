@@ -2,3 +2,10 @@
   width: 50%;
   transform: rotate(-15deg);
 }
+
+@media screen and (max-width: 768px) {
+  .premium-sneaker-details {
+    flex-direction: column;
+    text-align: center;
+  }
+}

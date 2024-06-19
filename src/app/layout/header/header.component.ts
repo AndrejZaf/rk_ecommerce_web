@@ -33,7 +33,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (cartFromStorage) {
           const items = JSON.parse(cartFromStorage);
           this.totalItems = items.length;
-          console.log(this.totalItems);
         }
       });
 
@@ -64,7 +63,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.keycloakService
       .isLoggedIn()
       .then((loggedIn) => {
-        console.log(loggedIn);
         this.isLoggedIn = !loggedIn;
       })
       .catch((err) => {

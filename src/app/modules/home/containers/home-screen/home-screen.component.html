@@ -2,7 +2,7 @@
   <div class="premium-sneaker-preview text-center">
     <h2 class="fw-bold">Our Top Pick</h2>
     <h1 class="fw-bolder">{{ (premiumSneaker$ | async)?.name }}</h1>
-    <img [src]="(premiumSneaker$ | async)?.images?.[0]" />
+    <img class="img-fluid" [src]="(premiumSneaker$ | async)?.images?.[0]" />
   </div>
   <div
     class="premium-sneaker-details d-flex justify-content-between align-items-center"
@@ -21,7 +21,7 @@
       </button>
     </div>
     <img
-      class="premium-sneaker-detail-image"
+      class="premium-sneaker-detail-image img-fluid"
       [src]="(premiumSneaker$ | async)?.images?.[1]"
     />
   </div>
