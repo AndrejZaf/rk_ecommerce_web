@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { KeycloakService } from 'keycloak-angular';
 import { Subscription } from 'rxjs';
 import { CartStorageService } from 'src/app/shared/services/cart-storage.service';
 
@@ -15,11 +16,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { link: '/contact', title: 'Contact' },
   ];
   isCollapsed = true;
+  public isLoggedIn: boolean = false;
   private storageSub: Subscription = new Subscription();
   totalItems: number = 0;
   constructor(
     private router: Router,
-    private cartStorageService: CartStorageService
+    private cartStorageService: CartStorageService,
+    private keycloakService: KeycloakService
   ) {}
   ngOnInit(): void {
     this.storageSub = this.cartStorageService
@@ -33,6 +36,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
           console.log(this.totalItems);
         }
       });
+
+    this.isUserLoggedIn();
   }
 
   ngOnDestroy(): void {
@@ -48,6 +53,29 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   navigateHome(): void {
+    this.router.navigate(['/']);
+  }
+
+  navigateToLogin(): void {
+    this.keycloakService.login();
+  }
+
+  isUserLoggedIn(): void {
+    this.keycloakService
+      .isLoggedIn()
+      .then((loggedIn) => {
+        console.log(loggedIn);
+        this.isLoggedIn = !loggedIn;
+      })
+      .catch((err) => {
+        console.log(err);
+        this.isLoggedIn = false;
+      });
+  }
+
+  logout(): void {
+    this.keycloakService.logout();
+    this.isLoggedIn = true;
     this.router.navigate(['/']);
   }
 }

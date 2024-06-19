@@ -23,6 +23,8 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.11.2",
+    "keycloak-angular": "^13.1.0",
+    "keycloak-js": "^21.1.2",
     "ngx-infinite-scroll": "^15.0.0",
     "ngx-toastr": "^16.2.0",
     "rxjs": "~7.8.0",

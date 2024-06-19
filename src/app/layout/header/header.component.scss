@@ -14,3 +14,7 @@
 .custom-badge {
   background-color: #36454f !important;
 }
+
+.dropdown-toggle::after {
+  content: unset;
+}

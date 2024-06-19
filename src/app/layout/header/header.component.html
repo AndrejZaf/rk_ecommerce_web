@@ -38,14 +38,32 @@
       </ul>
     </div>
     <div
-      class="d-lg-flex col-lg-2 justify-content-lg-end d-none d-lg-block position-relative"
+      class="d-lg-flex col-lg-2 justify-content-lg-end d-none d-lg-block position-relative gap-2"
     >
-      <i class="bi bi-cart3 cart-icon" (click)="navigateToCart()"></i>
-      <span
-        *ngIf="totalItems"
-        class="position-absolute top-0 start-100 badge rounded-pill bg-danger custom-badge"
-        >{{ totalItems }}</span
-      >
+      <div>
+        <i
+          *ngIf="!totalItems"
+          class="bi bi-cart3 cart-icon"
+          (click)="navigateToCart()"
+        ></i>
+        <i
+          *ngIf="totalItems"
+          class="bi bi-cart-check-fill cart-icon"
+          (click)="navigateToCart()"
+        ></i>
+      </div>
+      <div *ngIf="!isLoggedIn" ngbDropdown class="d-inline-block">
+        <i class="bi bi-person-circle cart-icon" ngbDropdownToggle></i>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem (click)="logout()">Log Out</button>
+        </div>
+      </div>
+      <div *ngIf="isLoggedIn">
+        <i
+          class="bi bi-person-circle cart-icon"
+          (click)="navigateToLogin()"
+        ></i>
+      </div>
     </div>
   </div>
 </nav>

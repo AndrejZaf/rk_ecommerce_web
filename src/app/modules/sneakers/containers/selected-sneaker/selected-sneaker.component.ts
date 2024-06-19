@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
 import * as sneakersActions from '../../store/sneaker.actions';
 import { SneakerState } from '../../store/sneaker.store';
@@ -9,6 +9,7 @@ import { CartItemDTO } from './../../dtos/cart-item.dto';
 import { StorageService } from '../../services/storage.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { CartStorageService } from 'src/app/shared/services/cart-storage.service';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-selected-sneaker',
@@ -18,12 +19,14 @@ import { CartStorageService } from 'src/app/shared/services/cart-storage.service
 export class SelectedSneakerComponent implements OnInit, OnDestroy {
   public selectedSneaker: SneakerDTO | undefined;
   public selectedSize: number | undefined;
+  public isButtonDisabled: boolean = true;
 
   constructor(
     private store: Store,
     private route: ActivatedRoute,
     private cartStorageService: CartStorageService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private keycloakService: KeycloakService
   ) {
     this.store.select(SneakerState.selectedSneaker).subscribe((sneaker) => {
       this.selectedSneaker = sneaker;
@@ -34,6 +37,7 @@ export class SelectedSneakerComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       id && this.loadData(+id);
+      this.isUserLoggedIn();
     });
   }
 
@@ -62,6 +66,18 @@ export class SelectedSneakerComponent implements OnInit, OnDestroy {
     } else {
       this.selectedSize = size;
     }
+  }
+
+  isUserLoggedIn(): void {
+    this.keycloakService
+      .isLoggedIn()
+      .then((isLoggedIn) => {
+        this.isButtonDisabled = !isLoggedIn;
+      })
+      .catch((err) => {
+        console.log(err);
+        this.isButtonDisabled = false;
+      });
   }
 
   ngOnDestroy(): void {

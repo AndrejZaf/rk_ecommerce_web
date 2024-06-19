@@ -21,7 +21,11 @@
   <button class="btn btn-link favorite-button">
     <i class="bi bi-heart"></i>
   </button>
-  <button class="btn btn-outline-charcoal-alt" (click)="addSneakerToCart()">
+  <button
+    class="btn btn-outline-charcoal-alt"
+    (click)="addSneakerToCart()"
+    [disabled]="isButtonDisabled"
+  >
     Add to Cart
   </button>
   <div class="d-flex align-items-center price-box fw-bold">
