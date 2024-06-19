@@ -3,7 +3,7 @@
   <button
     class="btn btn-outline-charcoal-alt"
     (click)="checkout.emit()"
-    [disabled]="!isValid"
+    [disabled]="!isValid || isButtonDisabled"
   >
     Checkout
   </button>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-total-info',
@@ -13,6 +14,25 @@ export class TotalInfoComponent {
   isValid: boolean;
   @Input()
   sneakers: SneakerDTO[] | null;
+  public isButtonDisabled: boolean = false;
+
+  ngOnInit(): void {
+    this.isUserLoggedIn();
+  }
+
+  constructor(private keycloakService: KeycloakService) {}
+
+  isUserLoggedIn(): void {
+    this.keycloakService
+      .isLoggedIn()
+      .then((isLoggedIn) => {
+        this.isButtonDisabled = !isLoggedIn;
+      })
+      .catch((err) => {
+        console.log(err);
+        this.isButtonDisabled = false;
+      });
+  }
 
   calculateTotalPrice(): number {
     if (this.sneakers?.length) {
