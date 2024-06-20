@@ -26,7 +26,7 @@ export class CartService implements ICartService {
 
   createOrder(orderDTO: OrderDTO): Observable<OrderIdentifierDTO> {
     return this.http.post<OrderIdentifierDTO>(
-      `http://localhost:8080/api/order`,
+      `http://localhost:8080/api/orders`,
       JSON.stringify(orderDTO),
       {
         headers: {

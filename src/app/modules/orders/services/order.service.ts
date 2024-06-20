@@ -17,7 +17,7 @@ export class OrderService implements IOrderService {
 
   fetchOrder(id: string): Observable<OrderPreviewDTO> {
     return this.http.get<OrderPreviewDTO>(
-      `http://localhost:8080/api/order/${id}`
+      `http://localhost:8080/api/orders/${id}`
     );
   }
 
