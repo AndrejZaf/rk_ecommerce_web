@@ -39,7 +39,7 @@ export class CartService implements ICartService {
 
   payOrder(id: string): Observable<StripeSessionDTO> {
     return this.http.get<StripeSessionDTO>(
-      `http://localhost:8080/api/payment/${id}`
+      `http://localhost:8080/api/payments/${id}`
     );
   }
 }
