@@ -40,29 +40,22 @@
     <div
       class="d-lg-flex col-lg-2 justify-content-lg-end d-none d-lg-block position-relative gap-2"
     >
-      <div>
-        <i
-          *ngIf="!totalItems"
-          class="bi bi-cart3 cart-icon"
-          (click)="navigateToCart()"
-        ></i>
-        <i
-          *ngIf="totalItems"
-          class="bi bi-cart-check-fill cart-icon"
-          (click)="navigateToCart()"
-        ></i>
-      </div>
       <div *ngIf="!isLoggedIn" ngbDropdown class="d-inline-block">
+        <i class="bi bi-cart3 cart-icon" (click)="navigateToCart()"></i>
         <i class="bi bi-person-circle cart-icon" ngbDropdownToggle></i>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button ngbDropdownItem (click)="logout()">Log Out</button>
         </div>
       </div>
       <div *ngIf="isLoggedIn">
-        <i
-          class="bi bi-person-circle cart-icon"
+        <button
+          type="button"
+          class="btn btn-outline-charcoal text-uppercase"
+          routerLinkActive="active"
           (click)="navigateToLogin()"
-        ></i>
+        >
+          Log In
+        </button>
       </div>
     </div>
   </div>
