@@ -36,12 +36,50 @@
           </button>
         </li>
       </ul>
+      <div class="text-center d-lg-none">
+        <div *ngIf="isLoggedIn">
+          <button
+            type="button"
+            class="btn btn-outline-charcoal text-uppercase"
+            routerLinkActive="active"
+            (click)="navigateToLogin()"
+          >
+            Log In
+          </button>
+        </div>
+        <div *ngIf="!isLoggedIn">
+          <button
+            type="button"
+            class="btn btn-outline-charcoal text-uppercase"
+            routerLinkActive="active"
+            (click)="navigateToCart()"
+          >
+            Cart
+          </button>
+          <br />
+          <button
+            type="button"
+            class="btn btn-outline-charcoal text-uppercase"
+            routerLinkActive="active"
+            (click)="logout()"
+          >
+            Log Out
+          </button>
+        </div>
+      </div>
     </div>
     <div
-      class="d-lg-flex col-lg-2 justify-content-lg-end d-none d-lg-block position-relative gap-2"
+      class="d-lg-flex col-lg-2 justify-content-lg-end d-none d-lg-block position-relative"
     >
-      <div *ngIf="!isLoggedIn" ngbDropdown class="d-inline-block">
-        <i class="bi bi-cart3 cart-icon" (click)="navigateToCart()"></i>
+      <div *ngIf="!isLoggedIn" ngbDropdown class="d-flex gap-2">
+        <i
+          [class]="
+            totalItems === 0
+              ? 'bi bi-cart3 cart-icon'
+              : 'bi bi-cart-check-fill cart-icon'
+          "
+          (click)="navigateToCart()"
+        ></i>
         <i class="bi bi-person-circle cart-icon" ngbDropdownToggle></i>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button ngbDropdownItem (click)="logout()">Log Out</button>
