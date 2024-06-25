@@ -96,3 +96,13 @@ export class SelectGenders {
 export class ResetStore {
   static readonly type = '[Sneakers] Reset Store';
 }
+
+export class FilterSort {
+  static readonly type = '[Sneakers] Filter Sort';
+  constructor(readonly payload: string) {}
+}
+
+export class FilterName {
+  static readonly type = '[Sneakers] Filter Name';
+  constructor(readonly payload: string) {}
+}

@@ -11,7 +11,9 @@ interface ISneakerService {
     size: number,
     brandIds?: number[],
     selectedSizes?: number[],
-    selectedGenders?: string[]
+    selectedGenders?: string[],
+    sort?: string,
+    name?: string
   ): Observable<SneakerDTO[]>;
 }
 
@@ -38,11 +40,15 @@ export class SneakerService implements ISneakerService {
     size: number,
     brandIds?: number[],
     selectedSizes?: number[],
-    selectedGenders?: string[]
+    selectedGenders?: string[],
+    sort?: string,
+    name?: string
   ): Observable<SneakerDTO[]> {
     let brandQuery = '';
     let sizeQuery = '';
     let genderQuery = '';
+    let sortQuery = '';
+    let nameQuery = '';
     if (brandIds?.length !== 0) {
       brandQuery = `&brandIds=${brandIds?.join()}`;
     }
@@ -55,8 +61,16 @@ export class SneakerService implements ISneakerService {
       genderQuery = `&genders=${selectedGenders?.join()}`;
     }
 
+    if (sort) {
+      sortQuery = `&sort=${sort}`;
+    }
+
+    if (name) {
+      nameQuery = `&name=${name}`;
+    }
+
     return this.http.get<SneakerDTO[]>(
-      `http://localhost:8080/api/inventory/sneakers?page=${page}&size=${size}${brandQuery}${sizeQuery}${genderQuery}`
+      `http://localhost:8080/api/inventory/sneakers?page=${page}&size=${size}${brandQuery}${sizeQuery}${genderQuery}${sortQuery}${nameQuery}`
     );
   }
 }

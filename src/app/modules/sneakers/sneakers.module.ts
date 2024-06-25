@@ -15,6 +15,7 @@ import { NgxsModule } from '@ngxs/store';
 import { SelectedSneakerSizeComponent } from './components/selected-sneaker-size/selected-sneaker-size.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SneakerFilterComponent } from './components/sneaker-filter/sneaker-filter.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SizeFilterComponent,
     SelectedSneakerComponent,
     SelectedSneakerSizeComponent,
+    SneakerFilterComponent,
   ],
   imports: [
     CommonModule,
