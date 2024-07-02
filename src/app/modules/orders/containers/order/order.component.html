@@ -2,7 +2,9 @@
   <div class="d-flex justify-content-center">
     <div class="text-center">
       <h3>Order Preview</h3>
-      <h5 class="fw-semibold">Status: {{ order.orderStatus }}</h5>
+      <h5 class="fw-semibold">
+        Status: {{ orderStatusName(order.orderStatus) }}
+      </h5>
       <div *ngFor="let sneaker of sneakers" class="row sneaker-row">
         <img
           [src]="sneaker.images[1]"

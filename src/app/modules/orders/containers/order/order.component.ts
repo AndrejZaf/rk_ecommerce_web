@@ -43,4 +43,11 @@ export class OrderComponent implements OnInit {
         },
       });
   }
+
+  orderStatusName(orderStatus: string) {
+    const readableStatus = orderStatus.replaceAll('_', ' ');
+    return (
+      readableStatus[0].toUpperCase() + readableStatus.slice(1).toLowerCase()
+    );
+  }
 }

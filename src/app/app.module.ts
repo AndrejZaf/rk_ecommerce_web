@@ -24,7 +24,10 @@ function initializeKeycloak(keycloak: KeycloakService) {
         realm: 'rk_ecommerce',
         clientId: 'ecommerce_web',
       },
-      initOptions: {},
+      initOptions: {
+        onLoad: 'check-sso',
+        checkLoginIframe: false,
+      },
     });
 }
 
