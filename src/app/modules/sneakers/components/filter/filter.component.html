@@ -1,4 +1,6 @@
-<div class="sidebar-filter d-flex flex-column gap-3 sticky-top">
+<div
+  class="sidebar-filter d-flex flex-column gap-3 sticky-top justify-content-between"
+>
   <app-brand-filter
     *ngIf="(brands$ | async)?.length"
     [brands]="brands$ | async"

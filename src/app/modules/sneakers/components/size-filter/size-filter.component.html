@@ -1,8 +1,10 @@
 <h6 class="fw-bold text-uppercase border-bottom pb-2">Sneaker Size</h6>
-<div class="row gap-2 justify-content-start user-select-none">
+<div
+  class="row gap-2 justify-content-center justify-content-lg-start user-select-none mx-lg-1"
+>
   <div
     *ngFor="let size of sizes"
-    class="size-element col-3 text-center"
+    class="size-element col-4 text-center"
     (click)="selectNewSize(size)"
     [ngClass]="{ selected: selectedSizes.indexOf(size) !== -1 }"
   >
