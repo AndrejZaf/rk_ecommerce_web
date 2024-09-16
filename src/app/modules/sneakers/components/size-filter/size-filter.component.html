@@ -4,7 +4,7 @@
 >
   <div
     *ngFor="let size of sizes"
-    class="size-element col-4 text-center"
+    class="size-element col-5 text-center"
     (click)="selectNewSize(size)"
     [ngClass]="{ selected: selectedSizes.indexOf(size) !== -1 }"
   >
