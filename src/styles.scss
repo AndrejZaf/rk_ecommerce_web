@@ -96,3 +96,15 @@ body {
 .toast-success {
   background-color: #36454f !important;
 }
+
+.carousel-indicators [data-bs-target] {
+  background-color: #3c4142 !important;
+}
+
+.carousel-control-next-icon {
+  background-image: url(./assets/next.svg);
+}
+
+.carousel-control-prev-icon {
+  background-image: url(./assets/back.svg);
+}

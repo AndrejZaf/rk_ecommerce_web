@@ -15,7 +15,16 @@
       (selectSize)="selectNewSize($event)"
     ></app-selected-sneaker-size>
   </div>
-  <img class="img-fluid" [src]="selectedSneaker.images[1]" />
+  <div class="sneaker-images">
+    <ngb-carousel *ngIf="selectedSneaker.images">
+      <ng-template ngbSlide *ngFor="let image of selectedSneaker.images">
+        <div class="picsum-img-wrapper">
+          <img class="img-fluid" [src]="image" />
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+  <!-- <img class="img-fluid" [src]="selectedSneaker.images[1]" /> -->
 </div>
 <div class="d-flex justify-content-end gap-3">
   <button

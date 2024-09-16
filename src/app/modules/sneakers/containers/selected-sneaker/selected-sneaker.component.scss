@@ -16,4 +16,14 @@
     flex-direction: column;
     text-align: center;
   }
+
+  .sneaker-content,
+  .sneaker-images {
+    flex: none;
+  }
+}
+
+.sneaker-content,
+.sneaker-images {
+  flex: 1;
 }

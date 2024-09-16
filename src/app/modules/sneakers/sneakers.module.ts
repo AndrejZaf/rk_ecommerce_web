@@ -16,6 +16,7 @@ import { SelectedSneakerSizeComponent } from './components/selected-sneaker-size
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SneakerFilterComponent } from './components/sneaker-filter/sneaker-filter.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SneakerFilterComponent } from './components/sneaker-filter/sneaker-filt
     SharedModule,
     InfiniteScrollModule,
     FormsModule,
+    NgbCarouselModule,
     ReactiveFormsModule,
     NgxsModule.forFeature([SneakerState]),
   ],
