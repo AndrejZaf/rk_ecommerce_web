@@ -1,22 +1,20 @@
-<div>
-  <div
-    class="d-flex flex-wrap gap-4 justify-content-center justify-content-md-start"
-    infiniteScroll
-    [infiniteScrollDistance]="2"
-    [infiniteScrollThrottle]="500"
-    (scrolled)="onScroll.emit()"
-    [scrollWindow]="true"
-  >
-    <app-sneaker-card
-      *ngFor="let sneaker of sneakers"
-      (click)="redirectToSneaker(sneaker.id)"
-      [sneakerName]="sneaker.name"
-      [sneakerPrice]="sneaker.price"
-      [sneakerUrl]="sneaker.images[1]"
-    ></app-sneaker-card>
-  </div>
-  <div *ngIf="!hasMorePages" class="mt-5 text-center">
-    <h3>Bummer! :(</h3>
-    We reached the end of the sneaker universe
-  </div>
+<div
+  class="grid-container"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="500"
+  (scrolled)="onScroll.emit()"
+  [scrollWindow]="true"
+>
+  <app-sneaker-card
+    *ngFor="let sneaker of sneakers"
+    (click)="redirectToSneaker(sneaker.id)"
+    [sneakerName]="sneaker.name"
+    [sneakerPrice]="sneaker.price"
+    [sneakerUrl]="sneaker.images[1]"
+  ></app-sneaker-card>
+</div>
+<div *ngIf="!hasMorePages" class="mt-5 text-center">
+  <h3>Bummer! :(</h3>
+  We reached the end of the sneaker universe
 </div>

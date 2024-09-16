@@ -7,20 +7,13 @@
   border: 3px solid transparent;
   transition: all 0.2s linear;
   cursor: pointer;
+  height: 100%;
+  width: 100%;
 }
 
-@media (max-width: 575.98px) {
-  .sneaker-card {
-    height: 310px;
-    width: 310px;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .sneaker-card {
-    height: 310px;
-    width: 310px;
-  }
+.data-card {
+  width: 100%;
+  padding: 0 10px;
 }
 
 .sneaker-card:hover {
@@ -28,11 +21,6 @@
   border-style: solid;
   background: linear-gradient(to bottom, #dfdfdf, rgba(#dfdfdf, 0) 70%);
   border-image: linear-gradient(to bottom, #df7753, #f5f5f5 70%) 1;
-}
-
-.data-card {
-  width: 320px;
-  padding: 0px 10px;
 }
 
 @mixin magic-border($width, $color, $duration, $direction) {
