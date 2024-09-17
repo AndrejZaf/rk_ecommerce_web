@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="premium-sneaker-preview text-center">
-    <h2 class="fw-bold">Our Top Pick</h2>
+    <h2 class="fw-bold">{{ "ourTopPick" | translate }}</h2>
     <h1 class="fw-bolder">{{ (premiumSneaker$ | async)?.name }}</h1>
     <img class="img-fluid" [src]="(premiumSneaker$ | async)?.images?.[0]" />
   </div>
@@ -26,7 +26,7 @@
     />
   </div>
   <div class="top-shoes mt-5 border-top">
-    <h2 class="text-center my-5">Most Wanted Sneakers</h2>
+    <h2 class="text-center my-5">{{ "mostWantedSneakers" | translate }}</h2>
     <div class="grid-container">
       <app-sneaker-card
         *ngFor="let sneaker of sneakers$ | async"
