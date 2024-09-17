@@ -7,7 +7,7 @@
       class="navbar-brand col-lg-2 me-0 fw-semibold text-uppercase logo"
       (click)="navigateHome()"
     >
-      Rare Kickz
+      {{ "rareKickz" | translate }}
     </div>
     <button
       class="navbar-toggler"
@@ -44,7 +44,7 @@
             routerLinkActive="active"
             (click)="navigateToLogin()"
           >
-            Log In
+            {{ "logIn" | translate }}
           </button>
         </div>
         <div *ngIf="!isLoggedIn">
@@ -63,7 +63,7 @@
             routerLinkActive="active"
             (click)="logout()"
           >
-            Log Out
+            {{ "logOut" | translate }}
           </button>
         </div>
       </div>
@@ -82,7 +82,9 @@
         ></i>
         <i class="bi bi-person-circle cart-icon" ngbDropdownToggle></i>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem (click)="logout()">Log Out</button>
+          <button ngbDropdownItem (click)="logout()">
+            {{ "logOut" | translate }}
+          </button>
         </div>
       </div>
       <div *ngIf="isLoggedIn">
@@ -92,7 +94,7 @@
           routerLinkActive="active"
           (click)="navigateToLogin()"
         >
-          Log In
+          {{ "logIn" | translate }}
         </button>
       </div>
     </div>

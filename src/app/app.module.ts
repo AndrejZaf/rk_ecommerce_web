@@ -11,10 +11,12 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
 import { SharedModule } from './shared/shared.module';
 import { SneakersModule } from './modules/sneakers/sneakers.module';
 import { NgxsModule } from '@ngxs/store';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ShoppingCartModule } from './modules/shopping-cart/shopping-cart.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -31,6 +33,10 @@ function initializeKeycloak(keycloak: KeycloakService) {
     });
 }
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/app/', '.json');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +51,15 @@ function initializeKeycloak(keycloak: KeycloakService) {
     CoreModule,
     NgbModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      isolate: true,
+      defaultLanguage: 'en',
+    }),
     SharedModule,
     SneakersModule,
     ShoppingCartModule,
