@@ -17,7 +17,7 @@
         class="btn btn-outline-charcoal-alt btn-lg"
         (click)="redirectToSneaker(premiumSneaker.id)"
       >
-        Buy {{ (premiumSneaker$ | async)?.name }}
+        {{ "buy" | translate }} {{ (premiumSneaker$ | async)?.name }}
       </button>
     </div>
     <img
