@@ -1,5 +1,5 @@
 <p align="center">
-<img align="center" width="150" alt="Rare Kickz Logo" src="./src/assets//rk-short-logo.svg" />
+<img align="center" width="150" alt="Rare Kickz Logo" src="./src/assets/rk-short-logo.png" />
 </p>
 <h1 align="center" style="font-weight: bold;">RareKickz E-Commerce Web</h1>
 
@@ -11,6 +11,10 @@
 
 <p align="center">
     <b>Front End e-commerce application for buying sneakers.</b>
+</p>
+
+<p align="center">
+<img align="center" width="150" alt="Rare Kickz Logo" src="./src/assets/rk-preview.gif" />
 </p>
 
 <h2 id="technologies">💻 Technologies</h2>
