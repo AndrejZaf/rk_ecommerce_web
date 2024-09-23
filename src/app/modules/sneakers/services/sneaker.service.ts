@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SneakerDTO } from '../../home/dtos/sneaker.dto';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 interface ISneakerService {
   loadSneakersForHomepage(): Observable<SneakerDTO[]>;
@@ -25,13 +26,13 @@ export class SneakerService implements ISneakerService {
 
   loadSneakersForHomepage(): Observable<SneakerDTO[]> {
     return this.http.get<SneakerDTO[]>(
-      'http://localhost:8080/api/inventory/sneakers'
+      `${environment.apiUrl}:8080/api/inventory/sneakers`
     );
   }
 
   loadSelectedSneaker(id: number): Observable<SneakerDTO> {
     return this.http.get<SneakerDTO>(
-      `http://localhost:8080/api/inventory/sneakers/${id}`
+      `${environment.apiUrl}/api/inventory/sneakers/${id}`
     );
   }
 
@@ -70,7 +71,7 @@ export class SneakerService implements ISneakerService {
     }
 
     return this.http.get<SneakerDTO[]>(
-      `http://localhost:8080/api/inventory/sneakers?page=${page}&size=${size}${brandQuery}${sizeQuery}${genderQuery}${sortQuery}${nameQuery}`
+      `${environment.apiUrl}/api/inventory/sneakers?page=${page}&size=${size}${brandQuery}${sizeQuery}${genderQuery}${sortQuery}${nameQuery}`
     );
   }
 }

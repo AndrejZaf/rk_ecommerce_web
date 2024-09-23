@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BrandDTO } from '../dtos/brand.dto';
+import { environment } from 'src/environments/environment';
 
 interface IBrandService {
   loadBrands(): Observable<BrandDTO[]>;
@@ -14,7 +15,7 @@ export class BrandService implements IBrandService {
 
   loadBrands(): Observable<BrandDTO[]> {
     return this.http.get<BrandDTO[]>(
-      'http://localhost:8080/api/inventory/brands'
+      `${environment.apiUrl}/api/inventory/brands`
     );
   }
 }

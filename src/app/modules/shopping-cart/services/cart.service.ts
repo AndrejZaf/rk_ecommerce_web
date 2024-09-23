@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { OrderDTO } from '../dtos/order.dto';
 import { OrderIdentifierDTO } from '../dtos/order-identifier.dto';
 import { StripeSessionDTO } from '../dtos/stripe-session.dto';
+import { environment } from 'src/environments/environment';
 
 interface ICartService {
   getSneakersForCart(sneakerIds: number[]): Observable<SneakerDTO[]>;
@@ -20,13 +21,13 @@ export class CartService implements ICartService {
 
   getSneakersForCart(sneakerIds: number[]): Observable<SneakerDTO[]> {
     return this.http.get<SneakerDTO[]>(
-      `http://localhost:8080/api/inventory/sneakers/cart?ids=${sneakerIds}`
+      `${environment.apiUrl}/api/inventory/sneakers/cart?ids=${sneakerIds}`
     );
   }
 
   createOrder(orderDTO: OrderDTO): Observable<OrderIdentifierDTO> {
     return this.http.post<OrderIdentifierDTO>(
-      `http://localhost:8080/api/orders`,
+      `${environment.apiUrl}/api/orders`,
       JSON.stringify(orderDTO),
       {
         headers: {
@@ -39,7 +40,7 @@ export class CartService implements ICartService {
 
   payOrder(id: string): Observable<StripeSessionDTO> {
     return this.http.get<StripeSessionDTO>(
-      `http://localhost:8080/api/payments/${id}`
+      `${environment.apiUrl}/api/payments/${id}`
     );
   }
 }

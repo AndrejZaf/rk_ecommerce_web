@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 interface ISneakerSizeService {
   loadSneakerSizes(): Observable<number[]>;
@@ -14,7 +15,7 @@ export class SneakerSizeService implements ISneakerSizeService {
 
   loadSneakerSizes(): Observable<number[]> {
     return this.http.get<number[]>(
-      'http://localhost:8080/api/inventory/sneaker-sizes'
+      `${environment.apiUrl}/api/inventory/sneaker-sizes`
     );
   }
 }

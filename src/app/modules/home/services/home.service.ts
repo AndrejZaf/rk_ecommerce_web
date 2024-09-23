@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { SneakerDTO } from '../dtos/sneaker.dto';
 import { Observable } from 'rxjs';
 import { PremiumSneakerDTO } from '../dtos/premium-sneaker.dto';
+import { environment } from 'src/environments/environment';
 
 interface IHomeService {
   loadSneakers(): Observable<SneakerDTO[]>;
@@ -17,13 +18,13 @@ export class HomeService implements IHomeService {
 
   loadSneakers(): Observable<SneakerDTO[]> {
     return this.http.get<SneakerDTO[]>(
-      'http://localhost:8080/api/inventory/sneakers?page=0&size=6'
+      `${environment.apiUrl}/api/inventory/sneakers?page=0&size=6`
     );
   }
 
   loadPremiumSneaker(): Observable<PremiumSneakerDTO> {
     return this.http.get<PremiumSneakerDTO>(
-      'http://localhost:8080/api/inventory/sneakers/premium'
+      `${environment.apiUrl}/api/inventory/sneakers/premium`
     );
   }
 }

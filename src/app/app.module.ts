@@ -17,12 +17,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { environment } from 'src/environments/environment';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'http://localhost:8090',
+        url: `${environment.keycloakUrl}`,
         realm: 'rk_ecommerce',
         clientId: 'ecommerce_web',
       },
