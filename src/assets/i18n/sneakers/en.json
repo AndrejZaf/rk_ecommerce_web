@@ -1,0 +1,15 @@
+{
+  "brands": "Brands",
+  "gender": "Gender",
+  "male": "Male",
+  "female": "Female",
+  "bummer": "Bummer! :(",
+  "noSneakers": "We reached the end of the sneaker universe",
+  "singlePairOnly": "You are only allowed to buy a single pair!",
+  "sneakerSize": "Sneaker Size",
+  "sneakerFilterNameAsc": "Name, Asc",
+  "sneakerFilterNameDesc": "Name, Desc",
+  "sneakerFilterPriceAsc": "Price, Asc",
+  "sneakerFilterPriceDesc": "Price, Desc",
+  "addToCart": "Add to Cart"
+}

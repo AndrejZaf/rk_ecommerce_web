@@ -17,10 +17,18 @@
         aria-label="Default select example"
         (change)="onSortChange($event)"
       >
-        <option selected value="name;asc">Name, Asc</option>
-        <option value="name;desc">Name, Desc</option>
-        <option value="price;asc">Price, Asc</option>
-        <option value="price;desc">Price, Desc</option>
+        <option selected value="name;asc">
+          {{ "sneakerFilterNameAsc" | translate }}
+        </option>
+        <option value="name;desc">
+          {{ "sneakerFilterNameDesc" | translate }}
+        </option>
+        <option value="price;asc">
+          {{ "sneakerFilterPriceAsc" | translate }}
+        </option>
+        <option value="price;desc">
+          {{ "sneakerFilterPriceDesc" | translate }}
+        </option>
       </select>
     </div>
   </div>

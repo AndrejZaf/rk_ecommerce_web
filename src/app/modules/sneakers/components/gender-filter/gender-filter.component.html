@@ -1,4 +1,6 @@
-<h6 class="fw-bold text-uppercase border-bottom pb-2">Gender</h6>
+<h6 class="fw-bold text-uppercase border-bottom pb-2">
+  {{ "gender" | translate }}
+</h6>
 <div class="d-flex flex-column">
   <form [formGroup]="form">
     <div class="form-check">
@@ -9,7 +11,9 @@
         formControlName="male"
         id="male"
       />
-      <label class="form-check-label user-select-none" for="male">Male</label>
+      <label class="form-check-label user-select-none" for="male">{{
+        "male" | translate
+      }}</label>
     </div>
     <div class="form-check">
       <input
@@ -19,9 +23,9 @@
         formControlName="female"
         id="female"
       />
-      <label class="form-check-label user-select-none" for="female"
-        >Female</label
-      >
+      <label class="form-check-label user-select-none" for="female">{{
+        "female" | translate
+      }}</label>
     </div>
   </form>
 </div>

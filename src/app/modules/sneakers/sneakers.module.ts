@@ -17,6 +17,13 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SneakerFilterComponent } from './components/sneaker-filter/sneaker-filter.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/sneakers/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -39,6 +46,15 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     NgbCarouselModule,
     ReactiveFormsModule,
     NgxsModule.forFeature([SneakerState]),
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'en',
+      isolate: true,
+    }),
   ],
 })
 export class SneakersModule {}

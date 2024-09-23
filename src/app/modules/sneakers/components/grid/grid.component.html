@@ -15,6 +15,6 @@
   ></app-sneaker-card>
 </div>
 <div *ngIf="!hasMorePages" class="mt-5 text-center">
-  <h3>Bummer! :(</h3>
-  We reached the end of the sneaker universe
+  <h3>{{ "bummer" | translate }}</h3>
+  {{ "noSneakers" | translate }}
 </div>

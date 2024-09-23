@@ -24,7 +24,6 @@
       </ng-template>
     </ngb-carousel>
   </div>
-  <!-- <img class="img-fluid" [src]="selectedSneaker.images[1]" /> -->
 </div>
 <div class="d-flex justify-content-end gap-3">
   <button
@@ -32,7 +31,7 @@
     (click)="addSneakerToCart()"
     [disabled]="isButtonDisabled"
   >
-    Add to Cart
+    {{ "addToCart" | translate }}
   </button>
   <div class="d-flex align-items-center price-box fw-bold">
     <span>{{ selectedSneaker?.price | currency : "USD" }}</span>

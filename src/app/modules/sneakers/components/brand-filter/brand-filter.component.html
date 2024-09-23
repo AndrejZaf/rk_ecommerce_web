@@ -1,4 +1,6 @@
-<h6 class="fw-bold text-uppercase border-bottom pb-2">Brands</h6>
+<h6 class="fw-bold text-uppercase border-bottom pb-2">
+  {{ "brands" | translate }}
+</h6>
 <div class="d-flex flex-column" *ngIf="brands">
   <form [formGroup]="form">
     <div
