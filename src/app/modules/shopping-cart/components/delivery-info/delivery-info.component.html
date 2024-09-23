@@ -9,12 +9,12 @@
           placeholder="John"
           formControlName="firstName"
         />
-        <label for="floatingInput">First Name</label>
+        <label for="floatingInput">{{ "firstName" | translate }}</label>
         <div
           [ngClass]="{visible: (form.controls['firstName'].touched || submitted) && form.controls['firstName'].errors?.['required']}"
           class="control-error text-danger fw-semibold"
         >
-          Please enter first name
+          {{ "firstNameRequired" | translate }}
         </div>
       </div>
       <div class="form-floating flex-fill">
@@ -25,12 +25,12 @@
           placeholder="Doe"
           formControlName="lastName"
         />
-        <label for="lastName">Last Name</label>
+        <label for="lastName">{{ "lastName" | translate }}</label>
         <div
           [ngClass]="{visible: (form.controls['lastName'].touched || submitted) && form.controls['lastName'].errors?.['required']}"
           class="control-error text-danger fw-semibold"
         >
-          Please enter last name
+          {{ "lastNameRequired" | translate }}
         </div>
       </div>
     </div>
@@ -43,12 +43,12 @@
           placeholder="john.doe@email.com"
           formControlName="email"
         />
-        <label for="email">Email</label>
+        <label for="email">{{ "email" | translate }}</label>
         <div
           [ngClass]="{ visible: (form.controls['email'].touched || submitted) && (form.controls['email'].errors?.['required'] || form.controls['email'].errors?.['email'])}"
           class="control-error text-danger fw-semibold"
         >
-          Please enter valid email address
+          {{ "invalidEmail" | translate }}
         </div>
       </div>
       <div class="form-floating flex-fill">
@@ -59,12 +59,12 @@
           formControlName="phoneNumber"
           placeholder="+61 123 456 789"
         />
-        <label for="number">Phone Number</label>
+        <label for="number">{{ "phoneNumber" | translate }}</label>
         <div
           [ngClass]="{visible: (form.controls['phoneNumber'].touched || submitted) && form.controls['phoneNumber'].errors?.['required']}"
           class="control-error text-danger fw-semibold"
         >
-          Please enter phone number
+          {{ "phoneNumberRequired" | translate }}
         </div>
       </div>
     </div>
@@ -77,12 +77,12 @@
           formControlName="city"
           placeholder="London"
         />
-        <label for="city">City</label>
+        <label for="city">{{ "city" | translate }}</label>
         <div
           [ngClass]="{visible: (form.controls['city'].touched || submitted) && form.controls['city'].errors?.['required']}"
           class="control-error text-danger fw-semibold"
         >
-          Please enter city
+          {{ "cityRequired" | translate }}
         </div>
       </div>
       <div class="form-floating flex-fill">
@@ -93,12 +93,12 @@
           formControlName="country"
           placeholder="England"
         />
-        <label for="country">Country</label>
+        <label for="country">{{ "country" | translate }}</label>
         <div
           [ngClass]="{visible: (form.controls['country'].touched || submitted) && form.controls['country'].errors?.['required']}"
           class="control-error text-danger fw-semibold"
         >
-          Please enter country
+          {{ "countryRequired" | translate }}
         </div>
       </div>
     </div>
@@ -111,12 +111,12 @@
           formControlName="street"
           placeholder="Some Street No. 123"
         />
-        <label for="street">Street</label>
+        <label for="street">{{ "street" | translate }}</label>
         <div
           [ngClass]="{visible: (form.controls['street'].touched || submitted) && form.controls['street'].errors?.['required']}"
           class="control-error text-danger fw-semibold"
         >
-          Please enter street
+          {{ "streetRequired" | translate }}
         </div>
       </div>
       <div class="form-floating flex-fill">
@@ -127,12 +127,12 @@
           formControlName="postalCode"
           placeholder="1010"
         />
-        <label for="postalCode">Postal Code</label>
+        <label for="postalCode">{{ "postalCode" | translate }}</label>
         <div
           [ngClass]="{visible: (form.controls['postalCode'].touched || submitted) && form.controls['postalCode'].errors?.['required']}"
           class="control-error text-danger fw-semibold"
         >
-          Please enter postal code
+          {{ "postalCodeRequired" | translate }}
         </div>
       </div>
     </div>

@@ -1,18 +1,18 @@
 <div class="my-5 text-center">
   <i class="bi bi-bag-check-fill successful-purchase-icon"></i>
-  <h3>Your order has been successfully purchased.</h3>
+  <h3>{{ "orderSuccessful" | translate }}</h3>
   <div class="d-flex justify-content-center gap-2">
     <button
       class="btn btn-outline-charcoal text-uppercase"
       (click)="navigateToOrderPreview()"
     >
-      View order
+      {{ "viewOrder" | translate }}
     </button>
     <button
       class="btn btn-outline-charcoal-alt text-uppercase"
       (click)="navigateToShopping()"
     >
-      Continue shopping
+      {{ "continueShopping" | translate }}
     </button>
   </div>
 </div>

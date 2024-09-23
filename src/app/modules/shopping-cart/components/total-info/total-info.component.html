@@ -1,10 +1,12 @@
 <div class="info-line d-flex justify-content-end align-items-center gap-4">
-  <h4 class="mb-0">Total: {{ calculateTotalPrice() | currency : "USD" }}</h4>
+  <h4 class="mb-0">
+    {{ "total" | translate }} {{ calculateTotalPrice() | currency : "USD" }}
+  </h4>
   <button
     class="btn btn-outline-charcoal-alt"
     (click)="checkout.emit()"
     [disabled]="!isValid || isButtonDisabled"
   >
-    Checkout
+    {{ "checkout" | translate }}
   </button>
 </div>
