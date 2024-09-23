@@ -10,9 +10,6 @@ import { DeliveryInfoDTO } from '../../dtos/delivery-data.dto';
 import { OrderDTO } from '../../dtos/order.dto';
 import { CartService } from '../../services/cart.service';
 import { SneakerOrderDTO } from '../../dtos/sneaker-order.dto';
-import { Router } from '@angular/router';
-import { ToastService } from 'src/app/shared/services/toast.service';
-import { CartStorageService } from 'src/app/shared/services/cart-storage.service';
 
 @Component({
   selector: 'app-cart',
