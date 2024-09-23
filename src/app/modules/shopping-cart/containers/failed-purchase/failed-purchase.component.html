@@ -1,1 +1,12 @@
-<p>failed-purchase works!</p>
+<div class="my-5 text-center">
+  <i class="bi bi-bag-x-fill successful-purchase-icon"></i>
+  <h3>{{ "orderFailure" | translate }}</h3>
+  <div class="d-flex justify-content-center gap-2">
+    <button
+      class="btn btn-outline-charcoal-alt text-uppercase"
+      (click)="returnBack()"
+    >
+      {{ "goBack" | translate }}
+    </button>
+  </div>
+</div>

@@ -25,5 +25,7 @@
   "selectSneakers": "Please select sneakers in order to preview the cart and get your favorite shoes!",
   "continueShopping": "Continue Shopping",
   "viewOrder": "View Order",
-  "orderSuccessful": "Your order has been successfully purchased."
+  "orderSuccessful": "Your order has been successfully purchased.",
+  "orderFailure": "Unfortunately there was an issue completing the order, check your email and try again.",
+  "goBack": "Go Back"
 }
