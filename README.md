@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-<img align="center" width="150" alt="Rare Kickz Logo" src="./src/assets/rk-preview.gif" />
+<img align="center" alt="Rare Kickz Logo" src="./src/assets/rk-preview.gif" />
 </p>
 
 <h2 id="technologies">💻 Technologies</h2>
