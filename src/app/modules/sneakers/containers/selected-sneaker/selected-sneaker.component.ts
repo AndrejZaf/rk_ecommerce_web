@@ -48,6 +48,7 @@ export class SelectedSneakerComponent implements OnInit, OnDestroy {
     const cartItem: CartItemDTO = {
       sneakerId: this.selectedSneaker?.id,
       size: this.selectedSize,
+      brandId: this.selectedSneaker?.brandId,
     };
     this.cartStorageService.setItem(cartItem);
     this.toastService.show('Sneaker successfully added to cart', '');

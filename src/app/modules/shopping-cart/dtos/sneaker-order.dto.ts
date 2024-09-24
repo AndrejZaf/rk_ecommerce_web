@@ -1,4 +1,5 @@
 export interface SneakerOrderDTO {
-    id: number;
-    size: number;
+  id: number;
+  size: number;
+  brandId: number;
 }

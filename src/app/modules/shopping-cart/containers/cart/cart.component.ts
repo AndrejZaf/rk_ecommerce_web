@@ -72,6 +72,7 @@ export class CartComponent implements OnInit {
       const sneaker: SneakerOrderDTO = {
         id: item.sneakerId,
         size: item.size,
+        brandId: item.brandId,
       };
       return sneaker;
     });
