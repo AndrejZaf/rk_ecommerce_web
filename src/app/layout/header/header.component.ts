@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
-import { Subscription } from 'rxjs';
 import { CartStorageService } from 'src/app/shared/services/cart-storage.service';
 
 @Component({
@@ -16,35 +15,31 @@ export class HeaderComponent implements OnInit, OnDestroy {
     { link: '/contact', title: 'Contact' },
   ];
   isCollapsed = true;
-  public isLoggedIn: boolean = false;
-  private storageSub: Subscription = new Subscription();
-  totalItems: number = 0;
+  public isLoggedIn = false;
+  totalItems = 0;
+
   constructor(
     private router: Router,
     private cartStorageService: CartStorageService,
     private keycloakService: KeycloakService
   ) {}
+
   ngOnInit(): void {
-    this.storageSub = this.cartStorageService
-      .watchStorage()
-      .subscribe((key) => {
-        // Perform any additional actions here, such as fetching the new value
-        const cartFromStorage = localStorage.getItem('cart');
-        if (cartFromStorage) {
-          const items = JSON.parse(cartFromStorage);
-          this.totalItems = items.length;
-        }
-      });
+    this.cartStorageService.watchStorage().subscribe(() => {
+      const cartFromStorage = localStorage.getItem('cart');
+      if (cartFromStorage) {
+        const items = JSON.parse(cartFromStorage);
+        this.totalItems = items.length;
+      }
+    });
 
     this.isUserLoggedIn();
   }
 
   ngOnDestroy(): void {
-    this.storageSub = this.cartStorageService
-      .watchStorage()
-      .subscribe((key) => {
-        console.log('LocalStorage changed for key:', key);
-      });
+    this.cartStorageService.watchStorage().subscribe((key) => {
+      console.log('LocalStorage changed for key:', key);
+    });
   }
 
   navigateToCart(): void {

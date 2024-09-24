@@ -1,12 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { Observable, from } from 'rxjs';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
 import * as sneakersActions from '../../store/sneaker.actions';
 import { SneakerState } from '../../store/sneaker.store';
 import { CartItemDTO } from './../../dtos/cart-item.dto';
-import { StorageService } from '../../services/storage.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { CartStorageService } from 'src/app/shared/services/cart-storage.service';
 import { KeycloakService } from 'keycloak-angular';
@@ -19,7 +17,7 @@ import { KeycloakService } from 'keycloak-angular';
 export class SelectedSneakerComponent implements OnInit, OnDestroy {
   public selectedSneaker: SneakerDTO | undefined;
   public selectedSize: number | undefined;
-  public isButtonDisabled: boolean = true;
+  public isButtonDisabled = true;
 
   constructor(
     private store: Store,

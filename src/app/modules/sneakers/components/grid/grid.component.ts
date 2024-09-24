@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class GridComponent {
   @Input() sneakers: SneakerDTO[] | null = [];
   @Input() hasMorePages: boolean | null = true;
-  @Output() onScroll = new EventEmitter<void>();
+  @Output() scrollPage = new EventEmitter<void>();
 
   constructor(private router: Router) {}
 

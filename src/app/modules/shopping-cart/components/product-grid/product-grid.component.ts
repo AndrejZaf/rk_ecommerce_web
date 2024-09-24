@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
-import { Observable } from 'rxjs';
 import { CartItemDTO } from '../../dtos/cart-item.dto';
-import { Router } from '@angular/router';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { CartStorageService } from 'src/app/shared/services/cart-storage.service';
 import { Store } from '@ngxs/store';
@@ -25,7 +23,9 @@ export class ProductGridComponent {
 
   fetchSneakerQuantity(sneakerId: number): number {
     const cartFromStorage = localStorage.getItem('cart');
-    const items = JSON.parse(cartFromStorage!) as CartItemDTO[];
+    const items = cartFromStorage
+      ? (JSON.parse(cartFromStorage) as CartItemDTO[])
+      : [];
     return items.filter((item) => item.sneakerId === sneakerId)[0].size;
   }
 

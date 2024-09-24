@@ -7,14 +7,14 @@ import { KeycloakService } from 'keycloak-angular';
   templateUrl: './total-info.component.html',
   styleUrls: ['./total-info.component.scss'],
 })
-export class TotalInfoComponent {
+export class TotalInfoComponent implements OnInit {
   @Output()
   checkout: EventEmitter<void> = new EventEmitter();
   @Input()
   isValid: boolean;
   @Input()
   sneakers: SneakerDTO[] | null;
-  public isButtonDisabled: boolean = false;
+  public isButtonDisabled = false;
 
   ngOnInit(): void {
     this.isUserLoggedIn();

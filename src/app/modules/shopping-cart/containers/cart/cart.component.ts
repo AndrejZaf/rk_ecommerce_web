@@ -19,7 +19,7 @@ import { SneakerOrderDTO } from '../../dtos/sneaker-order.dto';
 export class CartComponent implements OnInit {
   cartSneakers$: Observable<SneakerDTO[]>;
   form: FormGroup;
-  isSubmitted: boolean = false;
+  isSubmitted = false;
 
   constructor(
     private store: Store,
@@ -54,7 +54,9 @@ export class CartComponent implements OnInit {
       return;
     }
     const cartFromStorage = localStorage.getItem('cart');
-    const items = JSON.parse(cartFromStorage!) as CartItemDTO[];
+    const items = cartFromStorage
+      ? (JSON.parse(cartFromStorage) as CartItemDTO[])
+      : [];
     const deliveryInfo: DeliveryInfoDTO = {
       city: this.form.controls['city'].value,
       country: this.form.controls['country'].value,

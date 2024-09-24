@@ -4,7 +4,7 @@ import * as sneakersActions from '../../store/sneaker.actions';
 import { Observable } from 'rxjs';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
 import { SneakerState } from '../../store/sneaker.store';
-import { BrandDTO } from '../../dtos/brand.dto';
+
 @Component({
   selector: 'app-sneakers',
   templateUrl: './sneakers.component.html',

@@ -19,7 +19,7 @@ export class BrandFilterComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.brands?.map((_) =>
+    this.brands?.map(() =>
       this.brandCheckboxes.push(this.formBuilder.control(false))
     );
     this.brandCheckboxes.valueChanges.subscribe((values) => {

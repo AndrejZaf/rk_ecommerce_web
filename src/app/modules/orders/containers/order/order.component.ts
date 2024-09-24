@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../services/order.service';
-import { ActivatedRoute, ParamMap, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { OrderPreviewDTO } from '../../dtos/order-preview.dto';
 import { SneakerDTO } from '../../dtos/sneaker.dto';
