@@ -1,0 +1,1 @@
+docker build . -t rk_ecommerce_web
